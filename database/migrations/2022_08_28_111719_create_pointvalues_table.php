@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('point_value_side')->nullable();
             $table->float('point_value_rate',10,2)->nullable();
             $table->bigInteger('point_user_id')->nullable();
-            $table->bigInteger('point_description')->nullable();
+            $table->text('point_description')->nullable();
             $table->boolean('point_type','0');
             $table->timestamps();
         });

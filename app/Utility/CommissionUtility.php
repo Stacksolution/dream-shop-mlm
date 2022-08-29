@@ -15,14 +15,14 @@ class CommissionUtility {
     |This Methoad use for give commition
     |@auther K.K ADIL KHAN AZAD
     */
-    public static function referral_commission($user) {
+    public static function referral_commission($user,$orderId) {
         //referral_commission
         $referred_user = User::where('user_referral',$user->user_referral_by)->first();
         $wallet = new Wallets();
         $wallet->wallet_uses    = 'referral_commission';
         $wallet->wallet_type    = 1;// One means credit and Zero means Debit
         $wallet->wallet_user_id = $referred_user->id;
-        $wallet->wallet_transaction_id = time();
+        $wallet->wallet_transaction_id = $orderId;// after return payment gaytwaye
         $wallet->wallet_description = "By activating ".$user->name."'s profile, you have got Rs.100 rupees !";
         $wallet->wallet_status = 1;
         $wallet->wallet_amount = 100;
@@ -33,14 +33,14 @@ class CommissionUtility {
     |This Methoad use for give commition
     |@auther K.K ADIL KHAN AZAD
     */
-    public static function pool_level_commission($user) {
+    public static function pool_level_commission($user,$orderId) {
         //level_income
         $referred_user = PoolMatrixCustomer::level_users($user);
         foreach($referred_user as $key => $data){
             $wallet = new Wallets();
             $wallet->wallet_uses    = 'level_income';
             $wallet->wallet_type    = 1;// One means credit and Zero means Debit
-            $wallet->wallet_transaction_id = time();
+            $wallet->wallet_transaction_id = $orderId;// after return payment gaytwaye
             $wallet->wallet_user_id = $data['user_id'];
                 $wallet->wallet_description = "You have received Rs.10 rupees pool level commition !";
             $wallet->wallet_status = 1;
@@ -53,7 +53,7 @@ class CommissionUtility {
             $wallet = new Wallets();
             $wallet->wallet_uses    = 'level_income_over';
             $wallet->wallet_type    = 1;// One means credit and Zero means Debit
-            $wallet->wallet_transaction_id = time();
+            $wallet->wallet_transaction_id = $orderId;// after return payment gaytwaye
             $wallet->wallet_user_id = 1;
                 $wallet->wallet_description = "You have received Rs.".$total." rupees pool level commition !";
             $wallet->wallet_status = 1;
@@ -61,6 +61,10 @@ class CommissionUtility {
             $wallet->save();
         }
     }
+    /*
+    |This Methoad use for give login commition
+    |@auther K.K ADIL KHAN AZAD
+    */
     /*
     |This Methoad use for give login commition
     |@auther K.K ADIL KHAN AZAD
@@ -95,13 +99,13 @@ class CommissionUtility {
     |This Methoad use for give coins
     |@auther K.K ADIL KHAN AZAD
     */
-    public static function signup_coins($user){
+    public static function signup_coins($user,$orderId){
         //signup_coins
         $coin = new Coins();
         $coin->coin_uses    = 'signup_coins';
         $coin->coin_type    = 1;// One means credit and Zero means Debit
         $coin->coin_user_id = $user->id;
-        $coin->coin_transaction_id = time();
+        $coin->coin_transaction_id = $orderId;
         $coin->coin_description = "You have get 200 Coins for signup ".env('APP_NAME')." !";
         $coin->coin_status = 1;
         $coin->coin_amount = 200;
@@ -186,7 +190,7 @@ class CommissionUtility {
     |@auther K.K ADIL KHAN AZAD
     */
     public static function level_direct_commission($user) {
-        //referral_commission
+        //level_direct_commission
         $referred_user = User::where('user_referral',$user->user_referral_by)->first();
         $wallet = new Wallets();
         $wallet->wallet_uses    = 'level_direct_commission';
@@ -202,16 +206,89 @@ class CommissionUtility {
     |This Methoad use for give commition level direct
     |@auther K.K ADIL KHAN AZAD
     */
-    public static function binary_point_value_commission($user){
+    public static function binary_point_value_commission($user,$order){
+        $orderItem = json_decode($order->orderItem->item_details);
         $binary = Binary::binary_users($user);
+
+        $position = Binary::where('binary_user_id',$user->id)->first();
+
         foreach($binary as $key => $data){
+            if($key > 0){
+                $position = Binary::where('binary_user_id',$data['user_id'])->first();
+            }
             $pointvalue = new Pointvalue();
-            $pointvalue->point_value =  '';
-            $pointvalue->point_value_side = '';
+            $pointvalue->point_value = $orderItem->product_point_value;
+            $pointvalue->point_value_side = $position->binary_user_side;
             $pointvalue->point_value_rate = 5;
-            $pointvalue->point_user_id = $data->user_id;
-            $pointvalue->point_description= '';
+            $pointvalue->point_transaction_id = $order->order_transaction_id;
+            $pointvalue->point_user_id = $data['user_id'];
+            $pointvalue->point_description= "By activating binary plan, you have got ".$pointvalue->point_value." point !";
             $pointvalue->point_type  = 1;
+            $pointvalue->save();
+
+            CommissionUtility::binary_point_matching_comittion($pointvalue);
         }
     }
+    /*
+    |This Methoad use for give matching comittion
+    |@auther K.K ADIL KHAN AZAD
+    */
+    public static function binary_point_matching_comittion($pointvalue){
+        if($pointvalue->point_value_side == 'R'){
+            $match_point_side  = 'L';
+            $totalPoint = Pointvalue::totalPointUserSide($pointvalue->point_user_id,$match_point_side);
+        }else{
+            $match_point_side = "R";
+            $totalPoint = Pointvalue::totalPointUserSide($pointvalue->point_user_id,$match_point_side);
+        }
+        
+
+        if($totalPoint > 0){
+            //detect positive and nigative value
+            if($totalPoint > $pointvalue->point_value){
+                 $total_unmatch_point = $totalPoint - $pointvalue->point_value;
+            }else{
+                 $total_unmatch_point = $pointvalue->point_value - $totalPoint;
+            }
+            //detect positive and nigative value
+            if($total_unmatch_point > $pointvalue->point_value){
+                $total_match_point   = $total_unmatch_point - $pointvalue->point_value;
+            }else{
+                $total_match_point   = $pointvalue->point_value - $total_unmatch_point;
+            }
+
+            if($total_match_point > 0){
+
+                $wallet = new Wallets();
+                $wallet->wallet_uses    = 'binary_matching_commission';
+                $wallet->wallet_type    = 1;// One means credit and Zero means Debit
+                $wallet->wallet_user_id = $pointvalue->point_user_id;
+                $wallet->wallet_transaction_id = $pointvalue->point_transaction_id;
+                $wallet->wallet_status = 1;
+                $wallet->wallet_amount = ($total_match_point * 5);
+                $wallet->wallet_description = "Matching income point you have got Rs.".$wallet->wallet_amount;
+                $wallet->save();
+
+                $Pointvalue = new Pointvalue();
+                $Pointvalue->point_value = $total_match_point;
+                $Pointvalue->point_value_side = "R";
+                $Pointvalue->point_value_rate = 5;
+                $Pointvalue->point_transaction_id = $pointvalue->point_transaction_id;
+                $Pointvalue->point_user_id = $pointvalue->point_user_id;
+                $Pointvalue->point_description= "Matching income point debited ".$total_match_point." point !";
+                $Pointvalue->point_type  = 0;// One means credit and Zero means Debit
+                $Pointvalue->save();
+
+                $Pointvalue = new Pointvalue();
+                $Pointvalue->point_value = $total_match_point;
+                $Pointvalue->point_value_side = "L";
+                $Pointvalue->point_value_rate = 5;
+                $Pointvalue->point_transaction_id = $pointvalue->point_transaction_id;
+                $Pointvalue->point_user_id = $pointvalue->point_user_id;
+                $Pointvalue->point_description= "Matching income point debited ".$total_match_point." point !";
+                $Pointvalue->point_type  = 0;// One means credit and Zero means Debit
+                $Pointvalue->save();
+            }
+        }
+    } 
 }

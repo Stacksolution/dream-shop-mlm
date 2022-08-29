@@ -55,9 +55,23 @@ class BnakAccountController extends Controller
     public function show(Request $request){
           $bank = BankAccount::query();
           $bank->where('bank_user_id',$request->bank);
+          $status = '';
+            if($request->has('status')){
+               $status = $request->status;
+               $bank->where('bank_status',$status);
+            }
+            $keyword = '';
+            if($request->has('search')){
+               $keyword = $request->search;
+               $bank->where(function ($q) use ($keyword){
+                    $q->orWhere('bank_account_holder', 'like', '%'.$keyword.'%')
+                    ->orWhere('bank_mobile_number', 'like', '%'.$keyword.'%')
+                    ->orWhere('bank_email', 'like', '%'.$keyword.'%');
+                });
+            }
           $bank->orderBy('id','desc');
           $bank = $bank->paginate(9);
-        return view('back-end.bankaccount.index',compact('bank'));
+        return view('back-end.bankaccount.index',compact('bank','keyword','status'));
     }   
     /**
      * this method use for show bank form 

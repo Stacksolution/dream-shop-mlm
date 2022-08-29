@@ -53,9 +53,9 @@ class Binary extends Model
         if(!empty($records)){
 
             if($records->binary_status = 1){
-                array_push($user_recored,array('user_id'=>$records->user->id,'user_name'=>$records->user->name,'user_referral'=>$records->user->user_referral,'parent_id'=>$records->binary_parent_id,'status'=>true));
+                array_push($user_recored,array('user_id'=>$records->user->id,'user_name'=>$records->user->name,'user_referral'=>$records->user->user_referral,'parent_id'=>$records->binary_parent_id,'status'=>true,'user_side'=>$records->binary_user_side));
             }else{
-                array_push($user_recored,array('user_id'=>$records->user->id,'user_name'=>$records->user->name,'user_referral'=>$records->user->user_referral,'parent_id'=>$records->binary_parent_id,'status'=>false));
+                array_push($user_recored,array('user_id'=>$records->user->id,'user_name'=>$records->user->name,'user_referral'=>$records->user->user_referral,'parent_id'=>$records->binary_parent_id,'status'=>false,'user_side'=>$records->binary_user_side));
             }
             
 
@@ -65,9 +65,9 @@ class Binary extends Model
                     $records = Binary::where('binary_user_id',$parent_id)->with('user')->first();
                     if(!empty($records->user)){
                         if($records->binary_status = 1){
-                            array_push($user_recored,array('user_id'=>$records->user->id,'user_name'=>$records->user->name,'user_referral'=>$records->user->user_referral,'parent_id'=>$records->binary_parent_id,'status'=>true));
+                            array_push($user_recored,array('user_id'=>$records->user->id,'user_name'=>$records->user->name,'user_referral'=>$records->user->user_referral,'parent_id'=>$records->binary_parent_id,'status'=>true,'user_side'=>$records->binary_user_side));
                         }else{
-                            array_push($user_recored,array('user_id'=>$records->user->id,'user_name'=>$records->user->name,'user_referral'=>$records->user->user_referral,'parent_id'=>$records->binary_parent_id,'status'=>false));
+                            array_push($user_recored,array('user_id'=>$records->user->id,'user_name'=>$records->user->name,'user_referral'=>$records->user->user_referral,'parent_id'=>$records->binary_parent_id,'status'=>false,'user_side'=>$records->binary_user_side));
                         }
                     }
                 }

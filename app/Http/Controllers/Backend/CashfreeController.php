@@ -13,11 +13,12 @@ use App\Models\User;
 use App\Models\ActivationWallet;
 use App\Utility\CommissionUtility;
 use App\Models\Order;
+use App\Models\Wallets;
 
 class CashfreeController extends Controller{
     //
     public function online_pay(Request $request){
-        CommissionUtility::binary_point_value_commission(Auth()->user());
+        
         $orderAmount = 200;
         if($request->plan == 'binary'){
             $order = Order::where('order_transaction_id',$request->id)->first();
@@ -71,9 +72,8 @@ class CashfreeController extends Controller{
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public static function pool_payment(Request $request){
+     public static function pool_payment(Request $request){
         $user = User::findOrFail($request->user_id);
-        $active = new ActivationWallet();
         if($request->txStatus == 'SUCCESS'){
 
             $user->user_id_status = 1;
@@ -88,16 +88,19 @@ class CashfreeController extends Controller{
             $payment->payment_uses = 'level_active_online';
             $payment->save();
 
-            //wallet or commition utility
-            CommissionUtility::referral_commission($user);
-            CommissionUtility::pool_level_commission($user);
-            CommissionUtility::signup_coins($user);
-        }
+            if(Wallets::where('wallet_transaction_id',$request->orderId)->count() <= 0){
+                //wallet or commition utility
+                CommissionUtility::referral_commission($user,$request->orderId);
+                CommissionUtility::pool_level_commission($user,$request->orderId);
+                CommissionUtility::signup_coins($user,$request->orderId);
 
-        $active->active_amount  = $request->orderAmount;
-        $active->active_orderid = $request->orderId;
-        $active->active_user_id = $request->user_id;
-        $active->save();
+                $active = new ActivationWallet();
+                $active->active_amount  = $request->orderAmount;
+                $active->active_orderid = $request->orderId;
+                $active->active_user_id = $request->user_id;
+                $active->save();
+            }
+        } 
     }
     /**
      * This method use for active level income user
@@ -135,8 +138,10 @@ class CashfreeController extends Controller{
      */
     public static function binary_payment(Request $request){
         if($request->txStatus == 'SUCCESS'){
-            $order = Order::where('order_transaction_id',$request->user_id)->first();
+            //$request->user_id  as order id 
+            $order = Order::where('order_transaction_id',$request->user_id)->with('orderItem')->first();
             $order->order_payment_status = 'paid';
+            $order->order_invoice_number = 'AA-'.sprintf('%08d',$order->id);
             $order->save();
 
             $payment = new PaymentLog();
@@ -148,7 +153,7 @@ class CashfreeController extends Controller{
             $payment->payment_uses = 'binary_active_online';
             $payment->save();
 
-
+            CommissionUtility::binary_point_value_commission(Auth()->user(),$order);
         }
     }
 }
