@@ -89,12 +89,13 @@ class BnakAccountController extends Controller
     public function store(Request $request){
         
         $validated = $request->validate([
-            'bank_name' => 'required|min:2',
-            'name' => 'required',
+            'bank_name' => 'required|min:2|string',
+            'name' => 'required|string',
             'mobile' => 'required|min:10',
             'account_number' => 'required',
             'ifsc'=>'required',
             'account_address'=>'required',
+            'bank_email'=>'required|email'
         ]);
         
         $checkAccount = BankAccount::where('bank_account_number',$request->bank);
@@ -144,12 +145,13 @@ class BnakAccountController extends Controller
      */
     public function update(Request $request){
         $validated = $request->validate([
-            'bank_name' => 'required|min:2',
-            'name' => 'required',
+            'bank_name' => 'required|min:2|string',
+            'name' => 'required|string',
             'mobile' => 'required|min:10',
             'account_number' => 'required',
             'ifsc'=>'required',
             'account_address'=>'required',
+            'bank_email'=>'required|email'
         ]);
         $account = BankAccount::findOrFail($request->bank);
         $account->bank_name = $request->bank_name;
@@ -159,9 +161,19 @@ class BnakAccountController extends Controller
         $account->bank_mobile_number = $request->mobile;
         $account->bank_address = $request->account_address;
         $account->bank_is_default = 1;
-        $account->bank_status = 0;
-        $account->bank_user_id = Auth()->user()->id;
         
+        $beneficiary = CashfreeUtility::get_beneficiary($request);
+        if(!empty($beneficiary)){
+           $account->bank_beneficiary = $beneficiary;
+           $account->bank_status = 1;
+        }else{
+            $beneficiary = CashfreeUtility::create_beneficiary($request);
+            if(!empty($beneficiary)){
+                $account->bank_beneficiary = $beneficiary;
+                $account->bank_status = 1;
+            }
+        }
+
         if($account->save()){
             \Session::flash('success','Bank Account updated successfully !');
             return redirect()->route('bank.index');

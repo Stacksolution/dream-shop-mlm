@@ -43,20 +43,13 @@
                            @foreach($records as $key => $data_1)
                            <li>
                               <a href="{{route('binary.show',[$data_1->user->id])}}">
-                                 <div class="d-flex" style="box-shadow: 5px 5px 10px #888888;border-radius: 5px; padding: 10px;">
-                                    <div class="align-self-center me-3">
-                                       @if($data_1->binary_status == 1)
-                                       <i class="mdi mdi-circle text-success font-size-10"></i>
-                                       @else
-                                       <i class="mdi mdi-circle text-danger font-size-10"></i>
-                                       @endif
-                                    </div>
+                                 <div class="d-flex @if($data_1->binary_status == 1){{'bg-success text-light'}}@endif" style="box-shadow: 5px 5px 10px #888888;border-radius: 5px; padding: 10px;">
                                     <div class="align-self-center me-3">
                                         <img src="{{ static_asset('back-end/images/users/avatar-1.jpg')}}" class="rounded-circle avatar-xs" alt="">
                                     </div>
                                     <div class="flex-grow-1 overflow-hidden">
-                                        <h5 class="text-truncate font-size-14 mb-1">{{ $data_1->user->name }}</h5>
-                                        <p class="text-truncate mb-0">{{$data_1->user->user_referral}}</p>
+                                        <h5 class="text-truncate font-size-14 mb-1 @if($data_1->binary_status == 1){{' text-light'}}@endif">{{ $data_1->user->name }}</h5>
+                                        <p class="text-truncate mb-0">{{$data_1->user->user_referral}} - {{$data_1->binary_user_side =="R" ? "RIGHT":"LEFT"}}</p>
                                     </div>
                                 </div>
                               </a>
@@ -65,20 +58,13 @@
                                  @foreach($data_1->children as $key => $data_2)
                                  <li>
                                     <a href="{{route('binary.show',[$data_2->user->id])}}">
-                                       <div class="d-flex" style="box-shadow: 5px 5px 10px #888888;border-radius: 5px; padding: 10px;">
-                                          <div class="align-self-center me-3">
-                                             @if($data_2->binary_status == 1)
-                                             <i class="mdi mdi-circle text-success font-size-10"></i>
-                                             @else
-                                             <i class="mdi mdi-circle text-danger font-size-10"></i>
-                                             @endif
-                                          </div>
+                                       <div class="d-flex @if($data_2->binary_status == 1){{'bg-success text-light'}}@endif" style="box-shadow: 5px 5px 10px #888888;border-radius: 5px; padding: 10px;">
                                           <div class="align-self-center me-3">
                                               <img src="{{ static_asset('back-end/images/users/avatar-1.jpg')}}" class="rounded-circle avatar-xs" alt="">
                                           </div>
                                           <div class="flex-grow-1 overflow-hidden">
-                                              <h5 class="text-truncate font-size-14 mb-1">{{ $data_2->user->name }}</h5>
-                                              <p class="text-truncate mb-0">{{$data_2->user->user_referral}}</p>
+                                              <h5 class="text-truncate font-size-14 mb-1 @if($data_2->binary_status == 1){{'text-light'}}@endif">{{ $data_2->user->name }}</h5>
+                                              <p class="text-truncate mb-0">{{$data_2->user->user_referral}} - {{$data_2->binary_user_side =="R" ? "RIGHT":"LEFT"}} </p>
                                           </div>
                                       </div>
                                     </a>
@@ -87,20 +73,13 @@
                                        @foreach($data_2->children as $key => $data_3)
                                        <li>
                                           <a href="{{route('binary.show',[$data_3->user->id])}}">
-                                             <div class="d-flex" style="box-shadow: 5px 5px 10px #888888;border-radius: 5px; padding: 10px;">
-                                                <div class="align-self-center me-3">
-                                                   @if($data_3->binary_status == 1)
-                                                   <i class="mdi mdi-circle text-success font-size-10"></i>
-                                                   @else
-                                                   <i class="mdi mdi-circle text-danger font-size-10"></i>
-                                                   @endif
-                                                </div>
+                                             <div class="d-flex @if($data_3->binary_status == 1){{'bg-success text-light'}}@endif" style="box-shadow: 5px 5px 10px #888888;border-radius: 5px; padding: 10px;">
                                                 <div class="align-self-center me-3">
                                                     <img src="{{ static_asset('back-end/images/users/avatar-1.jpg')}}" class="rounded-circle avatar-xs" alt="">
                                                 </div>
                                                 <div class="flex-grow-1 overflow-hidden">
-                                                    <h5 class="text-truncate font-size-14 mb-1">{{ $data_3->user->name }}</h5>
-                                                    <p class="text-truncate mb-0">{{$data_3->user->user_referral}}</p>
+                                                    <h5 class="text-truncate font-size-14 mb-1 @if($data_3->binary_status == 1){{'text-light'}}@endif">{{ $data_3->user->name }}</h5>
+                                                    <p class="text-truncate mb-0">{{$data_3->user->user_referral}} - {{$data_3->binary_user_side =="R" ? "RIGHT":"LEFT"}}</p>
                                                 </div>
                                             </div>
                                           </a>
@@ -109,20 +88,14 @@
                                              @foreach($data_3->children as $key => $data_4)
                                              <li>
                                                 <a href="{{route('binary.show',[$data_4->user->id])}}">
-                                                   <div class="d-flex" style="box-shadow: 5px 5px 10px #888888;border-radius: 5px; padding: 10px;">
-                                                      <div class="align-self-center me-3">
-                                                         @if($data_4->binary_status == 1)
-                                                         <i class="mdi mdi-circle text-success font-size-10"></i>
-                                                         @else
-                                                         <i class="mdi mdi-circle text-danger font-size-10"></i>
-                                                         @endif
-                                                      </div>
+                                                   <div class="d-flex @if($data_4->binary_status == 1){{'bg-success text-light'}}@endif" style="box-shadow: 5px 5px 10px #888888;border-radius: 5px; padding: 10px;">
                                                       <div class="align-self-center me-3">
                                                           <img src="{{ static_asset('back-end/images/users/avatar-1.jpg')}}" class="rounded-circle avatar-xs" alt="">
                                                       </div>
                                                       <div class="flex-grow-1 overflow-hidden">
-                                                          <h5 class="text-truncate font-size-14 mb-1">{{ $data_4->user->name }}</h5>
-                                                          <p class="text-truncate mb-0">{{$data_4->user->user_referral}}</p>
+                                                          <h5 class="text-truncate font-size-14 mb-1 @if($data_4->binary_status == 1){{'
+                                                            text-light'}}@endif">{{ $data_4->user->name }}</h5>
+                                                          <p class="text-truncate mb-0">{{$data_4->user->user_referral}} - {{$data_4->binary_user_side =="R" ? "RIGHT":"LEFT"}}</p>
                                                       </div>
                                                   </div>
                                                 </a>

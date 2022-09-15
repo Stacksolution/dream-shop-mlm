@@ -20,6 +20,17 @@
          </div>
       </div>
       <!-- end page title -->
+      @php $status = App\Models\Document::document_status(Auth()->user()->id); 
+      @endphp
+      @if($status != "approved")
+      <div class="col-md-12">
+         <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="mdi mdi-block-helper me-2"></i>
+            Your KYC Verification Still pending after upload your documents and wait some time for KYC update Process !
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+         </div>
+      </div>
+      @endif
       <div class="row">
          <div class="col-12">
             <div class="card border border-info">
@@ -86,9 +97,19 @@
                            </div>
                         </div>
                      </div>
+                     @if($status == "approved")
                      <div class="mt-3">
                         <button class="btn btn-primary" type="submit">Save</button>
                      </div>
+                     @else
+                     <div class="col-md-12">
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                           <i class="mdi mdi-block-helper me-2"></i>
+                           Your KYC Verification Still pending after upload your documents and wait some time for KYC update Process !
+                           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                     </div>
+                     @endif
                   </form>
                </div>
             </div>

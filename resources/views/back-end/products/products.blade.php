@@ -29,7 +29,7 @@
                                  - 25 %
                                  </span>
                               </div>
-                              <img src="https://www.underseaproductions.com/wp-content/uploads/2013/11/dummy-image-square-600x600.jpg" alt="" class="img-fluid mx-auto d-block">
+                              <img src="{{image_path($data->product_icon)}}" alt="" class="img-fluid mx-auto d-block">
                            </div>
                            <div class="mt-4 text-center">
                               <h5 class="mb-3 text-truncate"><a href="{{route('product.show',[$data->id])}}" class="text-dark">{{ $data->product_name }}</a></h5>

@@ -43,6 +43,7 @@
                         <thead>
                            <tr>
                               <th>Sr</th>
+                              <th>Thumbnail</th>
                               <th>Name</th>
                               <th>Price</th>
                               <th>Capping</th>
@@ -50,8 +51,6 @@
                               <th>Generation</th>
                               <th>Point</th>
                               <th>Rewards</th>
-                              <th>Royalty</th>
-                              <th>Core Team</th>
                               <th>Bonanza</th>
                               <th>Action</th>
                            </tr>
@@ -60,6 +59,7 @@
                            @foreach($products as $key => $data)
                            <tr>
                               <td>{{ $key + $products->firstItem() }}</td>
+                              <td><img src="{{ image_path($data->product_icon) }}" class="img-thumbnail avatar-sm"></td>
                               <td>{{ $data->product_name }}</td>
                               <td>{{ $data->product_price }}</td>
                               <td>{{ $data->product_capping }}</td>
@@ -67,8 +67,6 @@
                               <td>{{ $data->product_generation_income }}</td>
                               <td>{{ $data->product_point_value }}</td>
                               <td>{{ $data->product_rewards }}</td>
-                              <td>{{ $data->product_royalty }}</td>
-                              <td>{{ $data->product_core_team }}</td>
                               <td>{{ $data->product_bonanza_point }}</td>
                               <td class="text-center">
                                  <a href="{{route('product.edit',[$data->id])}}" class="btn btn-sm btn-outline-success"><i class="bx bx-edit"></i></a>

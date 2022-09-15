@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Backend\AizUploadController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,4 +22,13 @@ Route::get('/user-signup', [HomeController::class, 'user_signup'])->name('user.s
 
 Route::get('/user/logout', [LoginController::class, 'logout'])->name('user.logout');
 Auth::routes();
+
+// AIZ Uploader
+Route::controller(AizUploadController::class)->group(function () {
+    Route::post('/aiz-uploader', 'show_uploader');
+    Route::post('/aiz-uploader/upload', 'upload');
+    Route::get('/aiz-uploader/get_uploaded_files', 'get_uploaded_files');
+    Route::post('/aiz-uploader/get_file_by_ids', 'get_preview_files');
+    Route::get('/aiz-uploader/download/{id}', 'attachment_download')->name('download_attachment');
+});
 

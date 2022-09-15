@@ -3,6 +3,7 @@ namespace App\Utility;
 use App\Models\PoolMatrixCustomer;
 use App\Models\User;
 use Illuminate\Support\Str;
+use App\Models\Wallets;
 
 class PoolsUtility {
     /*
@@ -86,5 +87,46 @@ class PoolsUtility {
     public static function find_power_of_number($num, $p) {
         if ($p == 0) return 1;
         return $num * PoolsUtility::find_power_of_number($num, $p - 1);
+    }
+    /*
+    |pool_matrix_customers_create
+    |This Methoad use for create pooluser create  
+    |@auther K.K ADIL KHAN AZAD
+    */
+    public static function pool_direct_level_commition($user,$orderId){
+        $users = User::direct_team_users($user);
+        $amount = 0;
+        $over_amoun =0; 
+        foreach($users as $key => $data){
+            if($key >= 1 && $key <= 2){
+                $amount = 20; //first level
+            }else{
+                $amount = 10; //second level
+            }
+
+            if($data['user_id_status'] == 1 && $key >= 1){
+                //pool_direct_level_commition
+                $wallet = new Wallets();
+                $wallet->wallet_uses    = 'pool_direct_level_commition';
+                $wallet->wallet_type    = 1;// One means credit and Zero means Debit
+                $wallet->wallet_user_id = $data['user_id'];
+                $wallet->wallet_transaction_id = $orderId;// after return payment gaytwaye
+                $wallet->wallet_description = "By activating ".$user->name."'s profile, you have got Rs.".$amount." rupees !";
+                $wallet->wallet_status = 1;
+                $wallet->wallet_amount = $amount;
+                $wallet->save();
+            }else{
+                $over_amoun+= $amount;
+            }
+        } 
+        $wallet = new Wallets();
+        $wallet->wallet_uses    = 'pool_direct_level_commition_over';
+        $wallet->wallet_type    = 1;// One means credit and Zero means Debit
+        $wallet->wallet_user_id = 1;
+        $wallet->wallet_transaction_id = $orderId;// after return payment gaytwaye
+        $wallet->wallet_description = "By activating ".$user->name."'s profile, you have got Rs.".$amount." rupees !";
+        $wallet->wallet_status = 1;
+        $wallet->wallet_amount = $over_amoun;
+        $wallet->save();
     }
 }

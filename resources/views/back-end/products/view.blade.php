@@ -26,14 +26,14 @@
                                     <div class="col-md-12 col-sm-12 col-12">
                                         <div class="tab-content" id="v-pills-tabContent">
                                           <div>
-                                              <img src="https://www.underseaproductions.com/wp-content/uploads/2013/11/dummy-image-square-600x600.jpg" alt="" class="img-fluid mx-auto d-block">
+                                              <img src="{{image_path($product->product_icon)}}" alt="" class="img-fluid mx-auto d-block">
                                           </div>
                                         </div>
                                         <div class="text-center">
-                                            <!-- <a class="btn btn-outline-primary waves-effect waves-light mt-2 me-1">
+                                            <a class="btn btn-outline-primary waves-effect waves-light mt-2 me-1" href="{{route('order.now',[$product->id,'wallets'])}}">
                                                 <i class="bx bx-wallet me-2"></i> Pay By Wallet
-                                            </a> -->
-                                            <a href="{{route('order.now',[$product->id])}}" class="btn btn-outline-success waves-effect mt-2 waves-light">
+                                            </a>
+                                            <a href="{{route('order.now',[$product->id,'online'])}}" class="btn btn-outline-success waves-effect mt-2 waves-light">
                                              <i class="bx bx-shopping-bag me-2"></i>
                                              Pay Online
                                             </a>
@@ -54,35 +54,35 @@
                                                <tbody>
                                                    <tr>
                                                        <th scope="row">Capping</th>
-                                                       <td>{{$product->product_capping}}</td>
+                                                       <td>Rs.{{$product->product_capping}}</td>
                                                    </tr>
                                                    <tr>
                                                        <th scope="row">Direct Income</th>
-                                                       <td>{{$product->product_direct_income}}</td>
+                                                       <td>Rs.{{$product->product_direct_income}}</td>
                                                    </tr>
                                                    <tr>
                                                        <th scope="row">Generation Income</th>
-                                                       <td>{{$product->product_generation_income}}</td>
+                                                       <td>{{$product->product_generation_income}}%</td>
                                                    </tr>
                                                    <tr>
                                                        <th scope="row">Point Value</th>
-                                                       <td>{{$product->product_point_value}}</td>
+                                                       <td>Point {{$product->product_point_value}}</td>
                                                    </tr>
                                                    <tr>
                                                        <th scope="row">Rewards Value</th>
-                                                       <td>{{$product->product_rewards}}</td>
+                                                       <td>Point {{$product->product_rewards}}</td>
                                                    </tr>
                                                    <tr>
                                                        <th scope="row">Royalty</th>
-                                                       <td>{{$product->product_royalty}}</td>
+                                                       <td>Rs.{{$product->product_royalty}}</td>
                                                    </tr>
                                                     <tr>
                                                        <th scope="row">Core Team</th>
-                                                       <td>{{$product->product_core_team}}</td>
+                                                       <td>Rs.{{$product->product_core_team}}</td>
                                                    </tr>
                                                     <tr>
                                                        <th scope="row">Bonanza</th>
-                                                       <td>{{$product->product_bonanza_point}}</td>
+                                                       <td>Point {{$product->product_bonanza_point}}</td>
                                                    </tr>
                                                </tbody>
                                            </table>

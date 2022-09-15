@@ -12,17 +12,36 @@ use App\Models\LevelMatrixCustomer;
 use App\Models\User;
 use App\Models\ActivationWallet;
 use App\Utility\CommissionUtility;
+use App\Utility\BinaryUtility;
 use App\Models\Order;
 use App\Models\Wallets;
+use App\Models\Binary;
 
 class CashfreeController extends Controller{
     //
     public function online_pay(Request $request){
         
-        $orderAmount = 200;
+        $orderAmount = 300;
         if($request->plan == 'binary'){
             $order = Order::where('order_transaction_id',$request->id)->first();
             $orderAmount = $order->order_total;
+            $user = Auth()->user();
+        }else if($request->plan == 'level'){            
+            $user = User::find($request->id);
+            //check level plan
+            $check = LevelMatrixCustomer::where('level_user_id',$request->id)->count();
+            if($check > 0){
+              \Session::flash('error','Your ID already active in level plans!');  
+              return redirect()->route('back.office');
+            }
+        }else if($request->plan == 'pool'){ 
+            $user = User::find($request->id);
+            //check level plan
+            $check_pool = User::where('id',$request->id)->where('user_id_status','1')->count();
+            if($check_pool > 0){
+              \Session::flash('error','Your ID already active in pool plans!');  
+              return redirect()->route('back.office');
+            }
         }
 
         $payment = array( 
@@ -31,9 +50,9 @@ class CashfreeController extends Controller{
           "orderAmount" => $orderAmount, 
           "orderCurrency" => "INR", 
           "orderNote" => "", 
-          "customerName" => Auth()->user()->name, 
-          "customerPhone" => Auth()->user()->user_mobile, 
-          "customerEmail" => Auth()->user()->email,
+          "customerName" => $user->name, 
+          "customerPhone" => $user->user_mobile, 
+          "customerEmail" => $user->email,
           "returnUrl" => Route('payment.success',[
             $request->id,//thi is a user id 
             $request->plan//this is plan name
@@ -93,7 +112,6 @@ class CashfreeController extends Controller{
                 CommissionUtility::referral_commission($user,$request->orderId);
                 CommissionUtility::pool_level_commission($user,$request->orderId);
                 CommissionUtility::signup_coins($user,$request->orderId);
-
                 $active = new ActivationWallet();
                 $active->active_amount  = $request->orderAmount;
                 $active->active_orderid = $request->orderId;
@@ -153,7 +171,61 @@ class CashfreeController extends Controller{
             $payment->payment_uses = 'binary_active_online';
             $payment->save();
 
-            CommissionUtility::binary_point_value_commission(Auth()->user(),$order);
+            Binary::where('binary_user_id',Auth()->user()->id)->update(array('binary_status'=>1));
+
+            BinaryUtility::binary_package_commission(Auth()->user(),$order);
         }
+    }
+
+    /**
+     * This method use for recharge wallets
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function recharge(Request $request){
+        $validated = $request->validate([
+            'amount' => 'required',
+        ]);
+
+        $user = Auth()->user();
+        $payment = array( 
+          "appId" => env('APP_ID'), 
+          "orderId" => Str::random(10), 
+          "orderAmount" => $request->amount, 
+          "orderCurrency" => "INR", 
+          "orderNote" => "", 
+          "customerName" => $user->name, 
+          "customerPhone" => $user->user_mobile, 
+          "customerEmail" => $user->email,
+          "returnUrl" => Route('recharge.success'), 
+          "notifyUrl" => 'https://icquickpayment.com/',
+        );
+        return view('back-end.payment.cashfree.paymant-form',compact('payment'));
+    }
+
+    /**
+     * This method use for recharge wallets success
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function recharge_success(Request $request){
+        if($request->txStatus == 'SUCCESS'){
+
+            $wallet = new Wallets();
+            $wallet->wallet_uses    = 'online_recharge_wallet';
+            $wallet->wallet_type    = 1;
+            $wallet->wallet_user_id = Auth()->user()->id;
+            $wallet->wallet_transaction_id = $request->orderId;
+            $wallet->wallet_description = "Add money Rs.".$request->orderAmount;
+            $wallet->wallet_status = 1;
+            $wallet->wallet_amount = $request->orderAmount;        
+            $wallet->save();
+
+            \Session::flash('success','Recharge success !');
+        }else{
+            \Session::flash('error','Recharge failure !');
+        }
+
+        return redirect()->route('wallets.index');
     }
 }

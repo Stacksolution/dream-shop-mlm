@@ -1,5 +1,4 @@
 @extends('back-end.layouts.app')
-
 @section('content')
 <div class="page-content">
    <div class="container-fluid">
@@ -26,12 +25,12 @@
                      </div>
                      <div class="flex-grow-1">
                         <div class="text-muted">
-                           <h5>{{$customer->name}}</h5>
+                           <h5>{{char_limit($customer->name,15)}}</h5>
+                           <p class="mb-0 text-primary">{{$customer->user_referral}}</p>
                            <p class="mb-1">{{$customer->email}}</p>
-                           <p class="mb-0">Id: #{{$customer->user_referral}}</p>
                         </div>
                      </div>
-                     <div class="dropdown ms-2">
+                     <div class="dropdown ms-0">
                         <a class="text-muted dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="mdi mdi-dots-horizontal font-size-18"></i>
                         </a>
@@ -100,7 +99,7 @@
                         <div class="d-flex">
                            <div class="flex-grow-1">
                               <p class="text-muted fw-medium">Wallets</p>
-                              <h4 class="mb-0">{{number_formats($balance)}}</h4>
+                              <h5 class="mb-0">{{number_formats($balance)}}</h5>
                            </div>
                            <div class="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
                               <span class="avatar-title rounded-circle bg-primary">
@@ -117,7 +116,7 @@
                         <div class="d-flex">
                            <div class="flex-grow-1">
                               <p class="text-muted fw-medium">Coins</p>
-                              <h4 class="mb-0">{{$coins}}</h4>
+                              <h5 class="mb-0">{{$coins}}</h5>
                            </div>
                            <div class="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
                               <span class="avatar-title rounded-circle bg-primary">
@@ -134,7 +133,7 @@
                         <div class="d-flex">
                            <div class="flex-grow-1">
                               <p class="text-muted fw-medium">Withdraw</p>
-                              <h4 class="mb-0">{{number_formats($withdraw)}}</h4>
+                              <h5 class="mb-0">{{number_formats($withdraw)}}</h5>
                            </div>
                            <div class="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
                               <span class="avatar-title rounded-circle bg-primary">
@@ -146,83 +145,168 @@
                   </div>
                </div>
             </div>
-         </div>
-      </div>
-      <div class="row">
-         <div class="col-xl-12">
-            <div class="card">
-                <div class="card-body">
-                    <ul class="nav nav-tabs" role="tablist" id="myTab">
-                        <li class="nav-item">
-                            <a class="nav-link active" data-bs-toggle="tab" href="#wallet" role="tab">
-                                <span class="d-block d-sm-none"><i class="fas fa-home"></i></span>
-                                <span class="d-none d-sm-block">Wallet history</span>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- Tab panes -->
-                    <div class="tab-content p-3 text-muted">
-                        <div class="tab-pane active" id="wallet" role="tabpanel">
-                            <div class="row">
-                                <div class="col-12" style="overflow-x:auto;">  
-                                    <table id="datatable-buttons" class="table table-bordered dt-responsive nowrap w-100">
-                                          <thead>
-                                              <tr>
-                                                  <th>Sr</th>
-                                                  <th>ID</th>
-                                                  <th>Amount</th>
-                                                  <th>TDS(Charge)</th>
-                                                  <th>Sedrvice(Charge)</th>
-                                                  <th>Date</th>
-                                                  <th>Remark</th>
-                                                  <th>Status</th>
-                                              </tr>
-                                          </thead>
-                                          <tbody>
-                                          @foreach($wallets as $key => $data)
-                                             <tr>
-                                               <td>{{ $key + $wallets->firstItem() }}</td>
-                                               <td>{{
-                                                $data->wallet_transaction_id}}</td>
-                                               <td>{{number_formats($data->wallet_amount)}}</td>
-                                               <td>{{number_formats($data->wallet_tds_charge)}}</td>
-                                               <td>{{number_formats($data->wallet_service_charge)}}</td>
-                                               <td>{{canvert_date($data->created_at)}}</td>
-                                               <td>{{ $data->wallet_description }}</td>
-                                               <td>
-                                                  @if($data->wallet_type == '1')
-                                                  <span class="badge badge-pill badge-soft-success font-size-11">CR</span>
-                                                  @else
-                                                  <span class="badge badge-pill badge-soft-danger font-size-11">DR</span>
-                                                  @endif
-                                               </td>
-                                             </tr>
-                                             @endforeach
-                                          </tbody>
-                                    </table>
-                                     {{ $wallets->links('pagination::bootstrap-5') }}
-                                </div>
-                            </div>
+            <!-- binary details -->
+            <div class="row">
+               <div class="col-md-4">
+                  <div class="card mini-stats-wid">
+                     <div class="card-body">
+                        <div class="d-flex">
+                           <div class="flex-grow-1">
+                              <p class="text-muted fw-medium">LEFT POINT</p>
+                              <h5 class="mb-0">{{$point_left}}</h5>
+                           </div>
+                           <div class="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
+                              <span class="avatar-title rounded-circle bg-primary">
+                              <i class="bx bx-wallet font-size-24"></i>
+                              </span>
+                           </div>
                         </div>
-                    </div>
-                </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-4">
+                  <div class="card mini-stats-wid">
+                     <div class="card-body">
+                        <div class="d-flex">
+                           <div class="flex-grow-1">
+                              <p class="text-muted fw-medium">BONANZA LEFT</p>
+                              <h5 class="mb-0">{{$bonanza_left}}</h5>
+                           </div>
+                           <div class="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
+                              <span class="avatar-title rounded-circle bg-primary">
+                              <i class="bx bx-wallet font-size-24"></i>
+                              </span>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-4">
+                  <div class="card mini-stats-wid">
+                     <div class="card-body">
+                        <div class="d-flex">
+                           <div class="flex-grow-1">
+                              <p class="text-muted fw-medium">REWARDS LEFT</p>
+                              <h5 class="mb-0">{{$rewards_left}}</h5>
+                           </div>
+                           <div class="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
+                              <span class="avatar-title rounded-circle bg-primary">
+                              <i class="bx bx-wallet font-size-24"></i>
+                              </span>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
             </div>
-      </div>
+            <div class="row">
+               <div class="col-md-4">
+                  <div class="card mini-stats-wid">
+                     <div class="card-body">
+                        <div class="d-flex">
+                           <div class="flex-grow-1">
+                              <p class="text-muted fw-medium">RIGHT POINT</p>
+                              <h5 class="mb-0">{{$point_right}}</h5>
+                           </div>
+                           <div class="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
+                              <span class="avatar-title rounded-circle bg-primary">
+                              <i class="bx bx-wallet font-size-24"></i>
+                              </span>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-4">
+                  <div class="card mini-stats-wid">
+                     <div class="card-body">
+                        <div class="d-flex">
+                           <div class="flex-grow-1">
+                              <p class="text-muted fw-medium">BONANZA RIGHT</p>
+                              <h5 class="mb-0">{{$bonanza_right}}</h5>
+                           </div>
+                           <div class="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
+                              <span class="avatar-title rounded-circle bg-primary">
+                              <i class="bx bx-wallet font-size-24"></i>
+                              </span>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-4">
+                  <div class="card mini-stats-wid">
+                     <div class="card-body">
+                        <div class="d-flex">
+                           <div class="flex-grow-1">
+                              <p class="text-muted fw-medium">REWARDS RIGHT</p>
+                              <h5 class="mb-0">{{$rewards_right}}</h5>
+                           </div>
+                           <div class="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
+                              <span class="avatar-title rounded-circle bg-primary">
+                              <i class="bx bx-wallet font-size-24"></i>
+                              </span>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-md-4">
+                  <div class="card mini-stats-wid">
+                     <div class="card-body">
+                        <div class="d-flex">
+                           <div class="flex-grow-1">
+                              <p class="text-muted fw-medium">POINT WALLETS</p>
+                              <h5 class="mb-0">{{$point_balance / 2}} X 5 = {{$point_balance / 2 * 5}}</h5>
+                           </div>
+                           <div class="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
+                              <span class="avatar-title rounded-circle bg-primary">
+                              <i class="bx bx-wallet font-size-24"></i>
+                              </span>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-4">
+                  <div class="card mini-stats-wid">
+                     <div class="card-body">
+                        <div class="d-flex">
+                           <div class="flex-grow-1">
+                              <p class="text-muted fw-medium">BONANZA WALLETS</p>
+                              <h5 class="mb-0">{{$bonanza_balance}}</h5>
+                           </div>
+                           <div class="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
+                              <span class="avatar-title rounded-circle bg-primary">
+                              <i class="bx bx-wallet font-size-24"></i>
+                              </span>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-4">
+                  <div class="card mini-stats-wid">
+                     <div class="card-body">
+                        <div class="d-flex">
+                           <div class="flex-grow-1">
+                              <p class="text-muted fw-medium">REWARDS WALLETS</p>
+                              <h5 class="mb-0">{{$rewards_balance}}</h5>
+                           </div>
+                           <div class="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
+                              <span class="avatar-title rounded-circle bg-primary">
+                              <i class="bx bx-wallet font-size-24"></i>
+                              </span>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
       </div>
    </div>
 </div>
-@endsection
-@section('script')
-<script src="{{ static_asset('back-end/libs/node-waves/waves.min.js')}}"></script>
-<script type="text/javascript">
-   $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
-       localStorage.setItem('activeTab', $(e.target).attr('href'));
-   });
-
-   var activeTab = localStorage.getItem('activeTab');
-   if(activeTab){
-      $('.nav-link').removeClass('active');
-      $('.nav-tabs a[href="' + activeTab + '"]').attr('class','nav-link active');
-   }
-</script>
 @endsection

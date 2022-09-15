@@ -56,7 +56,7 @@
                         </div>
                         <div class="col-md-6">
                            <div class="mb-4">
-                              <label>Account holder</label>
+                              <label>Account holder name</label>
                               <div class="input-group" id="name">
                                  <input type="name" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" placeholder="Enter account holder name" name="name" value="{{ old('name') }}">
                                  <span class="input-group-text"><i class="bx bx-voicemail"></i></span>
@@ -118,16 +118,14 @@
                               @enderror
                            </div>
                         </div>
-                     </div>
-                     <div class="row">
                         <div class="col-md-6">
                            <div class="mb-4">
-                              <label>Beneficiary ID <small>(Optinal)</small></label>
-                              <div class="input-group auth-pass-inputgroup">
-                                  <input type="password" class="form-control {{ $errors->has('bank_beneficiary') ? ' is-invalid' : '' }}" placeholder="Enter Beneficiary" aria-label="Password" aria-describedby="password-addon" name="bank_beneficiary">
-                                  <button class="btn btn-light " type="button"  id="password-addon"><i class="mdi mdi-eye-outline"></i></button>
-                              </div>                      
-                              @error('bank_beneficiary')
+                              <label>E-mail</label>
+                              <div class="input-group" id="bank_email">
+                                 <input type="email" class="form-control {{ $errors->has('bank_email') ? 'is-invalid' : '' }}" placeholder="Enter account address" name="bank_email" value="{{ old('bank_email') }}">
+                                 <span class="input-group-text"><i class="bx bx-voicemail"></i></span>
+                              </div>
+                              @error('bank_email')
                               <div class="text-danger">{{ $message }}</div>
                               @enderror
                            </div>

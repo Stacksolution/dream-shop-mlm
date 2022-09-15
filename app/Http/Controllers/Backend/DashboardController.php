@@ -11,6 +11,7 @@ use App\Utility\CommissionUtility;
 use App\Models\User;
 use App\Models\Wallets;
 use App\Models\Coins;
+use App\Models\Binary;
 use App\Models\PaymentLog;
 use App\Models\PoolMatrixCustomer;
 use App\Models\LevelMatrixCustomer;
@@ -35,8 +36,7 @@ class DashboardController extends Controller
      */
     public function index()
     {    
-        //PoolMatrixCustomer::level_users(User::find(145));
-
+    
         if(Auth()->user()->user_type == 'customer'){
             return redirect()->route('client.dashboard');
         }
@@ -68,7 +68,7 @@ class DashboardController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function clintdashboard(Request $request)
-    {   
+    {       
         $level = LevelMatrixCustomer::where('level_user_id',Auth()->user()->id)->count() > 0 ? 1 : 0 ; 
         $activation = array(
             'level_1'=>Auth()->user()->user_id_status,

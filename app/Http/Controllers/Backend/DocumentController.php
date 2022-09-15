@@ -23,7 +23,6 @@ class DocumentController extends Controller{
                 ->orWhere('user_mobile', 'like', '%'.$keyword.'%');
             });
         }
-        $customer->orderBy('id','desc');
         $customer = $customer->paginate(10);
         return view('back-end.dcoument.index',compact('customer','keyword'));
 	}

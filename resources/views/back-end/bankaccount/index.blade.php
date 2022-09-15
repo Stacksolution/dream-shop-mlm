@@ -32,8 +32,9 @@
                    <label class="visually-hidden" for="autoSizingInput">Status</label>
                    <select class="form-control form-control-md" name="status">
                         <option value="">Select Status</option>
-                        <option value="1" @if($status == 1) {{"selected"}} @endif>Active</option>
                         <option value="0" @if($status == 0) {{"selected"}} @endif>Pending</option>
+                        <option value="1" @if($status == 1) {{"selected"}} @endif>Active</option>
+                        <option value="2" @if($status == 2) {{"selected"}} @endif>Rejected</option>
                     </select>
                </div>
                <div class="col-sm-auto">

@@ -9,6 +9,7 @@ use App\Models\User;
 
 class BinaryController extends Controller
 {	
+	
 	public function index(Request $request){
 		$records = Binary::level_users(Auth()->user());
 		return view('back-end.customer.binary.index',compact('records'));

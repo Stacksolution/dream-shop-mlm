@@ -38,7 +38,7 @@
                      @csrf
                      {{ method_field('PUT') }}
                      <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                            <div class="mb-4">
                               <label>Name</label>
                               <div class="input-group" id="contact_name">
@@ -50,7 +50,7 @@
                               @enderror
                            </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                            <div class="mb-4">
                               <label>HSN<small>(Code)</small></label>
                               <div class="input-group">
@@ -62,9 +62,7 @@
                               @enderror
                            </div>
                         </div>
-                     </div>
-                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                            <div class="mb-4">
                               <label>Product<small>(amount)</small></label>
                               <div class="input-group">
@@ -76,7 +74,9 @@
                               @enderror
                            </div>
                         </div>
-                        <div class="col-md-6">
+                     </div>
+                     <div class="row">
+                        <div class="col-md-4">
                            <div class="mb-4">
                               <label>Capping<small>(amount)</small></label>
                               <div class="input-group">
@@ -88,9 +88,7 @@
                               @enderror
                            </div>
                         </div>
-                     </div>
-                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                            <div class="mb-4">
                               <label>Direct<small>(income)</small></label>
                               <div class="input-group">
@@ -102,7 +100,7 @@
                               @enderror
                            </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                            <div class="mb-4">
                               <label>Generation<small>(income)</small></label>
                               <div class="input-group">
@@ -116,7 +114,7 @@
                         </div>
                      </div>
                      <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                            <div class="mb-4">
                               <label>Point<small>(value)</small></label>
                               <div class="input-group">
@@ -128,7 +126,7 @@
                               @enderror
                            </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                            <div class="mb-4">
                               <label>Rewards<small>(point)</small></label>
                               <div class="input-group">
@@ -140,8 +138,6 @@
                               @enderror
                            </div>
                         </div>
-                     </div>
-                     <div class="row">
                         <div class="col-md-4">
                            <div class="mb-4">
                               <label>Royalty<small>(income)</small></label>
@@ -154,6 +150,8 @@
                               @enderror
                            </div>
                         </div>
+                     </div>
+                     <div class="row">
                         <div class="col-md-4">
                            <div class="mb-4">
                               <label>Core Team<small>(income)</small></label>
@@ -174,6 +172,37 @@
                                  <span class="input-group-text"><i class="bx bx-user"></i></span>
                               </div>
                               @error('bonanza_point')
+                              <div class="text-danger">{{ $message }}</div>
+                              @enderror
+                           </div>
+                        </div>
+                        <div class="col-md-4">
+                           <div class="mb-4">
+                              <label>Tax<small>(GST)</small></label>
+                              <div class="input-group">
+                                 <input type="text" class="form-control {{ $errors->has('tax') ? 'is-invalid' : '' }}" placeholder="Enter tax" name="tax" value="{{ old('tax',$product->product_tax_rate) }}">
+                                 <span class="input-group-text"><i class="bx bx-user"></i></span>
+                              </div>
+                              @error('tax')
+                              <div class="text-danger">{{ $message }}</div>
+                              @enderror
+                           </div>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-md-6">
+                           <div class="mb-4">
+                              <label>Product<small>(Image)</small></label>
+                              <div class="input-group" data-toggle="aizuploader" data-type="image">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text bg-soft-secondary font-weight-medium">{{ __('Browse')}}</div>
+                                    </div>
+                                    <div class="form-control file-amount">{{ __('Choose File') }}</div>
+                                    <input type="hidden" name="thumbnail_img" value="{{$product->product_icon}}" class="selected-files">
+                                </div>
+                                <div class="file-preview box sm">
+                                </div>
+                              @error('product_icon')
                               <div class="text-danger">{{ $message }}</div>
                               @enderror
                            </div>

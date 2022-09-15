@@ -106,9 +106,13 @@
                                          <a class="dropdown-toggle btn btn-outline-dark btn-sm" role="button" data-bs-toggle="dropdown" aria-haspopup="true">
                                          <i class="bx bx-menu font-size-14"></i>
                                          </a>
-                                         <div class="dropdown-menu dropdown-menu-end">
+                                         <div class="dropdown-menu dropdown-menu-end"> 
                                             @if (Auth()->user()->user_type == 'admin')
-                                            <a class="dropdown-item" href="{{route('wallets.show',[$data->id])}}"><i class="bx bx-wallet text-dark me-1"></i> Wallets</a>
+                                            <a class="dropdown-item" href="{{route('wallets.show',[$data->id])}}"><i class="bx bx-wallet text-dark me-1"></i> Wallets balance</a>
+                                            <a class="dropdown-item" href="{{route('wallets.transactions',[$data->id])}}"><i class="bx bx-wallet text-dark me-1"></i> Wallets Transaction</a>
+                                            <a class="dropdown-item" href="{{route('bonanza.show',[$data->id])}}"><i class="bx bx-wallet text-dark me-1"></i> Bonanza Transaction</a>
+                                            <a class="dropdown-item" href="{{route('point.show',[$data->id])}}"><i class="bx bx-wallet text-dark me-1"></i> Points Transaction</a>
+                                            <a class="dropdown-item" href="{{route('rewards.show',[$data->id])}}"><i class="bx bx-wallet text-dark me-1"></i> Rewards Transaction</a>
                                             @if($data->user_id_status == "0")
                                             <a class="dropdown-item" href="{{route('subscriprion.manual',[$data->id])}}"><i class="bx bx-money text-primary me-1"></i>Pool Manual Payment</a>
                                             @endif

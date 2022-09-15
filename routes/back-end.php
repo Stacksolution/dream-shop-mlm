@@ -14,6 +14,10 @@ use App\Http\Controllers\Backend\LevelController;
 use App\Http\Controllers\Backend\CashfreeController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\OrderController;
+use App\Http\Controllers\Backend\AizUploadController;
+use App\Http\Controllers\Backend\RewardsController;
+use App\Http\Controllers\Backend\BonanzaController;
+use App\Http\Controllers\Backend\PointsController;
 /*
 |--------------------------------------------------------------------------
 | Back-end Routes
@@ -38,7 +42,15 @@ Route::group(['prefix' => 'back-office', 'middleware' => ['auth']], function () 
     Route::resource('wallets', WalletsController::class);
     Route::group(['prefix' => 'wallets'], function () {
           Route::get('payment/{id}/{plan}', [WalletsController::class, 'plan_payment'])->name('wallets.plan.payment');
-     });
+          Route::get('transactions/{id}', [WalletsController::class, 'transactions'])->name('wallets.transactions');
+          Route::get('debitcredit/{id}', [WalletsController::class, 'debitcredit'])->name('wallets.debitcredit');
+          Route::get('recharge/{id}', [WalletsController::class, 'recharge'])->name('wallets.recharge');
+    });
+    Route::post('recharge/wallet/cashfree', [CashfreeController::class,'recharge'])->name('recharge.cashfree');
+
+    Route::resource('rewards',RewardsController::class);
+    Route::resource('bonanza',BonanzaController::class);
+    Route::resource('point',PointsController::class);
     //setting
     Route::resource('setting', SettingController::class);
     //invite
@@ -52,6 +64,7 @@ Route::group(['prefix' => 'back-office', 'middleware' => ['auth']], function () 
     //invite
     Route::resource('payout', PayoutController::class);
     Route::group(['prefix' => 'payout'], function () {
+        Route::post('store', [PayoutController::class, 'store'])->name('payout.store')->middleware(['throttle:payout']);
         Route::get('status/{payout}/{status}', [PayoutController::class, 'status_update'])->name('payout.status.update');
         Route::get('remove/{payout}', [PayoutController::class, 'destroy'])->name('payout.remove');
     });
@@ -76,13 +89,19 @@ Route::group(['prefix' => 'back-office', 'middleware' => ['auth']], function () 
     //binary
     Route::resource('binary', BinaryController::class);
     Route::get('payment/{id}/{plan}', [CashfreeController::class, 'online_pay'])->name('plan.payment');
-
     //products
     Route::resource('product', ProductController::class);
     //orders
     Route::resource('order', OrderController::class);
     Route::group(['prefix' => 'order'], function () {
-          Route::get('store/{product_id}', [OrderController::class, 'orderNow'])->name('order.now');
+          Route::get('store/{product_id}/{payment_mode}', [OrderController::class, 'orderNow'])->name('order.now');
+    });
+    //uploaded files
+    Route::resource('/uploaded-files', AizUploadController::class);
+    Route::controller(AizUploadController::class)->group(function () {
+        Route::any('/uploaded-files/file-info', 'file_info')->name('uploaded-files.info');
+        Route::get('/uploaded-files/destroy/{id}', 'destroy')->name('uploaded-files.destroy');
     });
 });
 Route::post('payment/success/{user_id}/{plan}', [CashfreeController::class, 'payment_success'])->name('payment.success');
+Route::post('payment/recharge/wallets/success', [CashfreeController::class,'recharge_success'])->name('recharge.success');

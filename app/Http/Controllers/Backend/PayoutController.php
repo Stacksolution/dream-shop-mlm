@@ -10,9 +10,11 @@ use App\Models\Withdraw;
 use App\Models\Wallets;
 use Illuminate\Support\Str;
 use App\Utility\CashfreeUtility;
+use App\Models\Document;
 
 class PayoutController extends Controller
-{
+{	
+
 	public function index(Request $request){
 		$withdraw = Withdraw::query();
 		if(Auth()->user()->user_type !="admin"){
@@ -42,9 +44,15 @@ class PayoutController extends Controller
             'bank' => 'required',
             'amount' => 'required'
         ]);
+		$status = Document::document_status(Auth()->user()->id); 
+		if($status != "approved"){
+		 	\Session::flash('error','Your KYC Verification Still pending after upload your documents and wait some time for KYC update Process !');
+            return back();
+		}
 
 		$wallets = Wallets::balance(Auth()->User()->id);
-		if(($wallets - 99) <= $request->amount){
+		$wallets = $wallets - 100;
+		if($wallets < $request->amount){
 			\Session::flash('error','Oops insufficient balance !');
             return back();
 		}
@@ -72,6 +80,12 @@ class PayoutController extends Controller
         $request['bank_beneficiary'] = $bank->bank_beneficiary;
         $request['transferAmount']   = $request->amount - $withdraw->withdraw_tds_charge - $withdraw->withdraw_service_charge;
         $request['transaction_id']   = $withdraw->withdraw_transaction_id;
+
+        //dubble check wallets balance
+        if($wallets < $request->amount){
+			\Session::flash('error','Oops insufficient balance !');
+            return back();
+		}
         $apiresponse = CashfreeUtility::requestTransfer($request);
         
         if($apiresponse == true){

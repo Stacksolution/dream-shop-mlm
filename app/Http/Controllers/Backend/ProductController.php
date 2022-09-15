@@ -54,6 +54,7 @@ class ProductController extends Controller
             'royalty_income' => 'required',
             'core_team_income' => 'required',
             'bonanza_point' => 'required',
+            'thumbnail_img' => 'required',
         ]);
         $product = new Product();
         $product->product_name  = $request->name;
@@ -67,6 +68,11 @@ class ProductController extends Controller
         $product->product_royalty  = $request->royalty_income;
         $product->product_core_team  = $request->core_team_income;
         $product->product_bonanza_point  = $request->bonanza_point;
+        $product->product_icon  = $request->thumbnail_img;
+
+        if($request->has('tax')){
+            $product->product_tax_rate  = $request->tax;
+        }
 
         if($product->save()){
             \Session::flash('success','Product successfully created!');
@@ -120,6 +126,7 @@ class ProductController extends Controller
             'royalty_income' => 'required',
             'core_team_income' => 'required',
             'bonanza_point' => 'required',
+            'thumbnail_img' => 'required'
         ]);
         $product->product_name  = $request->name;
         $product->product_hsn  = $request->hsn;
@@ -133,6 +140,12 @@ class ProductController extends Controller
         $product->product_core_team  = $request->core_team_income;
         $product->product_bonanza_point  = $request->bonanza_point;
 
+        if($request->has('thumbnail_img')){
+            $product->product_icon  = $request->thumbnail_img;
+        }
+        if($request->has('tax')){
+            $product->product_tax_rate  = $request->tax;
+        }
         if($product->save()){
             \Session::flash('success','Product successfully updated !');
             return redirect()->route('product.index');

@@ -77,7 +77,7 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'user_referral'=>strtoupper(Str::random(6)),
             'user_referral_by'=>$data['member_id'],
-            'user_mobile'=>$data['mobile'],
+            'user_mobile'=>preg_replace('/\s+/', '', $data['mobile']),
             'user_type'=>'customer',
         ]);
         

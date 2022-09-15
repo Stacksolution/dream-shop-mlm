@@ -38,7 +38,7 @@
                                         <label class="font-weight-bold">Password</label>
                                     </div>
                                     <div class="col-auto">
-                                        <a href="" class="form-text small text-muted">Forgot password ?</a>
+                                        <a href="{{route('password.request')}}" class="form-text small text-muted">Forgot password ?</a>
                                     </div>
                                 </div>
                                 <div class="input-group input-group-merge">
