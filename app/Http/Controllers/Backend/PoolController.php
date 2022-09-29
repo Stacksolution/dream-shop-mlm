@@ -36,7 +36,11 @@ class PoolController extends Controller
     public function update(Request $request){
 
     }
-
+    /**
+     * Show the user wise tree by user referral code.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
     public function show(Request $request){
 
     }
