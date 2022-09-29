@@ -15,10 +15,32 @@ class PoolController extends Controller
      *
      * @return void
      */
+    
     public function __construct()
     {
         $this->middleware('activation');
     }
+
+    public function index(Request $request){
+
+    }
+
+    public function create(Request $request){
+
+    }
+
+    public function store(Request $request){
+
+    }
+    
+    public function update(Request $request){
+
+    }
+
+    public function show(Request $request){
+
+    }
+
     /**
      * Show the user wise tree by user referral code.
      *
