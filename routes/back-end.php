@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\CustomerController;
@@ -8,16 +9,12 @@ use App\Http\Controllers\Backend\ActivetionController;
 use App\Http\Controllers\Backend\InviteController;
 use App\Http\Controllers\Backend\PayoutController;
 use App\Http\Controllers\Backend\BnakAccountController;
-use App\Http\Controllers\Backend\BinaryController;
 use App\Http\Controllers\Backend\DocumentController;
-use App\Http\Controllers\Backend\LevelController;
 use App\Http\Controllers\Backend\CashfreeController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\AizUploadController;
-use App\Http\Controllers\Backend\RewardsController;
-use App\Http\Controllers\Backend\BonanzaController;
-use App\Http\Controllers\Backend\PointsController;
+use App\Http\Controllers\Backend\PoolController;
 /*
 |--------------------------------------------------------------------------
 | Back-end Routes
@@ -37,7 +34,8 @@ Route::group(['prefix' => 'back-office', 'middleware' => ['auth']], function () 
     Route::get('dashboard', [DashboardController::class, 'clintdashboard'])->name('client.dashboard')->middleware('activation');
     //member
     Route::resource('customer', CustomerController::class);
-    Route::get('customer/treeview/{id}', [CustomerController::class, 'treeView'])->name('customer.treeview');
+    Route::get('pool/community/{id}', [PoolController::class, 'treeView'])->name('user.pool.community');
+    
     //wallets
     Route::resource('wallets', WalletsController::class);
     Route::group(['prefix' => 'wallets'], function () {
@@ -47,10 +45,6 @@ Route::group(['prefix' => 'back-office', 'middleware' => ['auth']], function () 
           Route::get('recharge/{id}', [WalletsController::class, 'recharge'])->name('wallets.recharge');
     });
     Route::post('recharge/wallet/cashfree', [CashfreeController::class,'recharge'])->name('recharge.cashfree');
-
-    Route::resource('rewards',RewardsController::class);
-    Route::resource('bonanza',BonanzaController::class);
-    Route::resource('point',PointsController::class);
     //setting
     Route::resource('setting', SettingController::class);
     //invite
@@ -64,7 +58,7 @@ Route::group(['prefix' => 'back-office', 'middleware' => ['auth']], function () 
     //invite
     Route::resource('payout', PayoutController::class);
     Route::group(['prefix' => 'payout'], function () {
-        Route::post('store', [PayoutController::class, 'store'])->name('payout.store')->middleware(['throttle:payout']);
+        //Route::post('store', [PayoutController::class, 'store'])->name('payout.store')->middleware(['throttle:payout']);
         Route::get('status/{payout}/{status}', [PayoutController::class, 'status_update'])->name('payout.status.update');
         Route::get('remove/{payout}', [PayoutController::class, 'destroy'])->name('payout.remove');
     });
@@ -81,26 +75,13 @@ Route::group(['prefix' => 'back-office', 'middleware' => ['auth']], function () 
         Route::post('upload/pan', [DocumentController::class, 'uploadPan'])->name('upload.pan');
         Route::get('update/{status}/{id}', [DocumentController::class, 'updateStatus'])->name('update.status');
     });
-    //level
-    Route::resource('level', LevelController::class);
-    Route::group(['prefix' => 'level'], function () {
-          Route::get('plan/checkout/{user_id}', [LevelController::class, 'checkout'])->name('level.checkout');
-    });
-    //binary
-    Route::resource('binary', BinaryController::class);
+
     Route::get('payment/{id}/{plan}', [CashfreeController::class, 'online_pay'])->name('plan.payment');
-    //products
-    Route::resource('product', ProductController::class);
-    //orders
-    Route::resource('order', OrderController::class);
-    Route::group(['prefix' => 'order'], function () {
-          Route::get('store/{product_id}/{payment_mode}', [OrderController::class, 'orderNow'])->name('order.now');
-    });
     //uploaded files
     Route::resource('/uploaded-files', AizUploadController::class);
     Route::controller(AizUploadController::class)->group(function () {
         Route::any('/uploaded-files/file-info', 'file_info')->name('uploaded-files.info');
-        Route::get('/uploaded-files/destroy/{id}', 'destroy')->name('uploaded-files.destroy');
+        //Route::get('/uploaded-files/destroy/{id}', 'destroy')->name('uploaded-files.destroy');
     });
 });
 Route::post('payment/success/{user_id}/{plan}', [CashfreeController::class, 'payment_success'])->name('payment.success');

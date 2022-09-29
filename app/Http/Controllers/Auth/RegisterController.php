@@ -10,7 +10,6 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Rules\MemberidRules;
-use App\Utility\PoolsUtility;
 use Illuminate\Support\Str;
 use Artisan;
 
@@ -75,18 +74,21 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'user_referral'=>strtoupper(Str::random(6)),
             'user_referral_by'=>$data['member_id'],
             'user_mobile'=>preg_replace('/\s+/', '', $data['mobile']),
             'user_type'=>'customer',
         ]);
         
         if($user){
-            PoolsUtility::pool_matrix_customers_create($user);
+            
+            $user->user_referral = referral($user->id);
+            $user->save();
+
             $customer  = new Customers(); 
             $customer->user_id  = $user->id;
             $customer->save();
         }
+
         Artisan::call('optimize:clear');
         return $user;
     }

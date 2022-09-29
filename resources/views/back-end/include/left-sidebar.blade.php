@@ -1,6 +1,5 @@
 <div class="vertical-menu">
    <div data-simplebar class="h-100">
-      <!--- Sidemenu -->
       <div id="sidebar-menu">
          <ul class="metismenu list-unstyled" id="side-menu">
             <li>
@@ -13,27 +12,23 @@
             <li>
                <a href="javascript: void(0);" class="waves-effect">
                <i class="bx bx-user"></i>
-               <span key="t-member">Team Management</span>
+               <span key="t-member">Community Records</span>
                </a>
                <ul class="sub-menu" aria-expanded="false">
-                  <li><a href="{{route('customer.index')}}" key="t-member">Pool Team</a></li>
-                  <li><a href="{{route('level.index')}}" key="t-level">Level Team</a></li>
-                  <li><a href="{{route('binary.index')}}" key="t-level">Binary Team</a></li>
+                  <li><a href="{{route('customer.index')}}" key="t-member">Pool Community</a></li> 
                </ul>
             </li>
-            <li class="menu-title" key="t-apps">Packages</li>
             <li>
                <a href="javascript: void(0);" class="waves-effect">
-               <i class="bx bx-package"></i>
-               <span key="Packages">Products & Packages</span>
+               <i class="bx bx-street-view"></i>
+               <span key="t-level">Tree Management</span>
                </a>
                <ul class="sub-menu" aria-expanded="false">
-                  <li><a href="{{route('product.index')}}" key="Packages">All Products</a></li>
-                  <li><a href="{{route('order.index')}}" key="Packages">Activated Packages</a></li>
-               </ul>
+                  <li><a href="{{route('user.pool.community',[Auth()->user()->id])}}" key="t-level">Pool Community</a></li>
+                  </ul>
             </li>
-            <li class="menu-title" key="t-apps">Wallets</li>
             @if(Auth()->user()->user_type != 'admin')
+            <li class="menu-title" key="t-apps">Wallets</li>
             <li>
                <a href="javascript: void(0);" class="waves-effect">
                <i class="bx bx-wallet"></i>
@@ -43,9 +38,6 @@
                   <li><a href="{{route('wallets.recharge',[Auth()->user()->id])}}" key="wallets">Wallets Recharge</a></li>
                   <li><a href="{{route('wallets.show',[Auth()->user()->id])}}" key="wallets">Balance Summary</a></li>
                   <li><a href="{{route('wallets.index')}}" key="wallets">Wallets Transaction</a></li>
-                  <li><a href="{{route('bonanza.index')}}" key="bonanza">Bonanza Transaction</a></li>
-                  <li><a href="{{route('point.index')}}" key="points">Points Transaction</a></li>
-                  <li><a href="{{route('rewards.index')}}" key="rewards">Rewards Transaction</a></li>
                </ul>
             </li>
             <li>

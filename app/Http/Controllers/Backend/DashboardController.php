@@ -10,11 +10,8 @@ use App\Utility\ActivetionUtility;
 use App\Utility\CommissionUtility;
 use App\Models\User;
 use App\Models\Wallets;
-use App\Models\Coins;
-use App\Models\Binary;
 use App\Models\PaymentLog;
 use App\Models\PoolMatrixCustomer;
-use App\Models\LevelMatrixCustomer;
 use App\Mail\SignupEmail;
 use Mail;
 
@@ -43,12 +40,11 @@ class DashboardController extends Controller
         
         $countmember = User::count();
         $wallets = Wallets::over_all_balance();
-        $coins = Coins::over_all_balance();
         $payment = PaymentLog::sum('payment_amount');
         $withdraw = Wallets::over_all_withdraw_balance();
         $tds = Wallets::sum('wallet_tds_charge');
         $service = Wallets::sum('wallet_service_charge');
-        return view('back-end.dashboard.index',compact('countmember','wallets','payment','coins','withdraw','service','tds'));
+        return view('back-end.dashboard.index',compact('countmember','wallets','payment','withdraw','service','tds'));
     }
     /**
      * Clear the application cache back office.
@@ -81,8 +77,7 @@ class DashboardController extends Controller
         CommissionUtility::login_commission(Auth()->User());
         $countmember = User::where('user_referral_by',Auth()->User()->user_referral)->count();
         $wallets = Wallets::balance(Auth()->User()->id);
-        $coins = Coins::balance(Auth()->User()->id);
-        return view('back-end.customer.dashboard',compact('countmember','wallets','coins','activation'));
+        return view('back-end.customer.dashboard',compact('countmember','wallets','activation'));
     }
 
     /**

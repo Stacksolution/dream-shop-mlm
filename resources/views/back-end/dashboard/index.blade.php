@@ -74,23 +74,6 @@
                    </div>
                 </div>
                 @endif
-                <div class="col-md-3">
-                   <div class="card mini-stats-wid">
-                      <div class="card-body">
-                         <div class="d-flex">
-                            <div class="flex-grow-1">
-                               <p class="text-muted fw-medium">Coins</p>
-                               <h5 class="mb-0">{{ $coins }}</h5>
-                            </div>
-                            <div class="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
-                               <span class="avatar-title rounded-circle bg-primary">
-                               <i class="bx bx-purchase-tag-alt font-size-24"></i>
-                               </span>
-                            </div>
-                         </div>
-                      </div>
-                   </div>
-                </div>
                 @if(Auth()->user()->user_id_status == '0')
                 <div class="col-md-3">
                    <div class="card mini-stats-wid">
@@ -219,7 +202,7 @@ option = {
     legend: {
         orient: 'vertical',
         left: 'left',
-        data: ['Direct','Pool','Level','Login'],
+        data: ['Direct','Pool'],
     },
     
     series : [
@@ -231,8 +214,6 @@ option = {
             data:[
                 {value:'{{$direct}}', name:'Direct'},
                 {value:'{{$pool}}', name:'Pool'},
-                {value:'{{$level}}', name:'Level'},
-                {value:'{{$login}}', name:'Login'},
             ],
             itemStyle: {
                 emphasis: {

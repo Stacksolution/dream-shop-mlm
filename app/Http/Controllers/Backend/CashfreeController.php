@@ -8,32 +8,22 @@ use App\Http\Controllers\Backend\OrderController;
 use Illuminate\Http\Request; 
 use Illuminate\Support\Str;   
 use App\Models\PaymentLog;
-use App\Models\LevelMatrixCustomer;
 use App\Models\User;
 use App\Models\ActivationWallet;
 use App\Utility\CommissionUtility;
-use App\Utility\BinaryUtility;
+use App\Utility\PoolsUtility;
 use App\Models\Order;
 use App\Models\Wallets;
-use App\Models\Binary;
 
 class CashfreeController extends Controller{
     //
     public function online_pay(Request $request){
         
-        $orderAmount = 300;
+        $orderAmount = 2100;
         if($request->plan == 'binary'){
-            $order = Order::where('order_transaction_id',$request->id)->first();
-            $orderAmount = $order->order_total;
-            $user = Auth()->user();
-        }else if($request->plan == 'level'){            
-            $user = User::find($request->id);
-            //check level plan
-            $check = LevelMatrixCustomer::where('level_user_id',$request->id)->count();
-            if($check > 0){
-              \Session::flash('error','Your ID already active in level plans!');  
-              return redirect()->route('back.office');
-            }
+            //To do
+        }else if($request->plan == 'level'){    
+            //To do
         }else if($request->plan == 'pool'){ 
             $user = User::find($request->id);
             //check level plan
@@ -71,12 +61,9 @@ class CashfreeController extends Controller{
         Artisan::call('cache:clear');
         if($request->plan == 'level'){
             //active and serving commition level income 
-            CashfreeController::level_payment($request);
         }else if($request->plan == 'pool'){
             //active and serving commition pool income 
             CashfreeController::pool_payment($request);
-        }else if($request->plan == 'binary'){
-            CashfreeController::binary_payment($request);
         }
 
         if($request->txStatus == 'SUCCESS'){
@@ -97,6 +84,8 @@ class CashfreeController extends Controller{
 
             $user->user_id_status = 1;
             $user->save();
+            //FOR ADD IN POOL A MEMBERS
+            PoolsUtility::pool_matrix_customers_create($user);
 
             $payment = new PaymentLog();
             $payment->payment_amount  = $request->orderAmount;
@@ -111,7 +100,7 @@ class CashfreeController extends Controller{
                 //wallet or commition utility
                 CommissionUtility::referral_commission($user,$request->orderId);
                 CommissionUtility::pool_level_commission($user,$request->orderId);
-                CommissionUtility::signup_coins($user,$request->orderId);
+                
                 $active = new ActivationWallet();
                 $active->active_amount  = $request->orderAmount;
                 $active->active_orderid = $request->orderId;
@@ -120,63 +109,6 @@ class CashfreeController extends Controller{
             }
         } 
     }
-    /**
-     * This method use for active level income user
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public static function level_payment(Request $request){
-        $user = User::findOrFail($request->user_id);
-        $parent = User::where('user_referral',$user->user_referral_by)->first();
-
-        if($request->txStatus == 'SUCCESS'){
-            $payment = new PaymentLog();
-            $payment->payment_amount  = $request->orderAmount;
-            $payment->payment_user_id = $request->user_id;
-            $payment->payment_details = json_encode($request->all());
-            $payment->payment_status = '1';
-            $payment->payment_type = '1';
-            $payment->payment_uses = 'level_active_online';
-            $payment->save();
-
-            $level = new LevelMatrixCustomer();
-            $level->level_user_id = $user->id;
-            $level->level_parent_id = $parent->id;
-            $level->level_uniq_number = time();
-            $level->save();
-
-            CommissionUtility::level_income_commission($user);
-            CommissionUtility::level_direct_commission($user);
-        }
-    }
-    /**
-     * This method use for active binary plan
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public static function binary_payment(Request $request){
-        if($request->txStatus == 'SUCCESS'){
-            //$request->user_id  as order id 
-            $order = Order::where('order_transaction_id',$request->user_id)->with('orderItem')->first();
-            $order->order_payment_status = 'paid';
-            $order->order_invoice_number = 'AA-'.sprintf('%08d',$order->id);
-            $order->save();
-
-            $payment = new PaymentLog();
-            $payment->payment_amount  = $request->orderAmount;
-            $payment->payment_user_id = $order->user_id;
-            $payment->payment_details = json_encode($request->all());
-            $payment->payment_status = '1';
-            $payment->payment_type = '1';
-            $payment->payment_uses = 'binary_active_online';
-            $payment->save();
-
-            Binary::where('binary_user_id',Auth()->user()->id)->update(array('binary_status'=>1));
-
-            BinaryUtility::binary_package_commission(Auth()->user(),$order);
-        }
-    }
-
     /**
      * This method use for recharge wallets
      *

@@ -38,8 +38,8 @@
                      <div class="row justify-content-center">
                          <div class="col-xl-10">
                              <h4 class="text-primary">Refer and Earn !</h4>
-                              <p class="text-muted font-size-14 mb-4">Earn upto ₹ 10,000 by referring your friends to join {{env('APP_NAME')}}. You will receive Rs 40 for every successful referral. Your friend will also receive a surprise but guaranteed cashback reward on making his/her activet your profile on {{env('APP_NAME')}} </p>
-                              <span class="message"></span>
+                              <!-- <p class="text-muted font-size-14 mb-4">Earn upto ₹ 10,000 by referring your friends to join {{env('APP_NAME')}}. You will receive Rs 40 for every successful referral. Your friend will also receive a surprise but guaranteed cashback reward on making his/her activet your profile on {{env('APP_NAME')}} </p>
+ -->                              <span class="message"></span>
                              <div class="input-group bg-light rounded">
                                  <input type="text" id="copyText1" class="form-control bg-transparent border-0" value="{{route('user.signup','source_id='.Auth()->user()->user_referral)}}" readonly>
                                  <button class="btn btn-primary" onclick="withJquery(); " type="button" id="button-addon2">

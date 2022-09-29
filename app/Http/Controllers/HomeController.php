@@ -53,7 +53,7 @@ class HomeController extends Controller
             $metadata = array('meta_title'=>'Join with '.$name.' and making online income with '.env('APP_NAME').' !','meta_description'=>'
                 Join with '.$name.' and making online income with '.env('APP_NAME').'! 
 
-                Just active profile ₹ 200 and get upto ₹100 cashback And every user registration get up to ₹10 commission ');
+                Just active profile ₹ 2100 and get upto ₹100 cashback And every user registration get up to ₹ 40 commission ');
         }
         $source_id = $request->get('source_id');
         return view('front-end.auth.signup-page',compact('metadata','source_id'));

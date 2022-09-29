@@ -46,11 +46,10 @@ class PoolsUtility {
         }else{
             $levels = $level[0];
         }
-
         //fetch level wise user and count total users
         $current_level = $levels['level_value'];
         $count_level_user = PoolMatrixCustomer::where('pmc_level_value', $current_level)->count();
-        $total_user_space = PoolsUtility::find_power_of_number(5, $current_level) - $count_level_user;
+        $total_user_space = PoolsUtility::find_power_of_number(3, $current_level) - $count_level_user;
 
         if($total_user_space == 0){
             $level_data = PoolMatrixCustomer::where('pmc_level_value', $current_level)->first();
@@ -60,8 +59,9 @@ class PoolsUtility {
         //user tree complete and count user 
         if(!empty($pool_users)){
             $count_level_id = PoolMatrixCustomer::where('pmc_parent_id',$pool_users->pmc_parent_id)->count();
-            if($count_level_id >= 5){
-                $parent_user = PoolMatrixCustomer::where('pmc_user_id','>',$pool_users->pmc_parent_id)->limit(1)->first();
+            if($count_level_id >= 3){
+                $parent = PoolMatrixCustomer::where('pmc_parent_id',$pool_users->pmc_parent_id)->orderBy('id','asc')->limit(1)->first();
+                $parent_user = PoolMatrixCustomer::find($parent->id);
                 $parent_id = $parent_user->pmc_user_id;
             }else{
                 $parent_id = $pool_users->pmc_parent_id;

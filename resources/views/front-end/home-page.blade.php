@@ -1,407 +1,547 @@
 @extends('front-end.layouts.app')
-@section('title','Ic quick payment')
+@section('title','Dream Shop')
 @section('content')
-<section class="section pt-9 pb-9 section-header text-white gradient-overly-right-color" style="background: url('{{ static_asset("front-end/img/hero-bg10.jpg")}}')no-repeat center center / cover">
-   <div class="container">
-      <div class="row">
-         <div class="col-md-7 col-lg-6">
-            <div class="hero-slider-content">
-               <span class="text-uppercase">Business Solutions</span>
-               <h1 class="display-2">Your Most Trusted Business Partner</h1>
-               <p class="lead">Holisticly procrastinate mission-critical convergence with reliable customer service. Assertively underwhelm idea-sharing for impactful solutions.</p>
-               <a href="#" class="btn btn-secondary mt-4">Get Start Now</a>
+<div class="banner-section3">
+   <img src="{{ static_asset('front-end/images/icons/banner3-circle.svg') }}" class="banner3-circle" alt="image">
+   <img src="{{ static_asset('front-end/images/icons/banner3-circle3.svg') }}" class="banner3-circle3" alt="image">
+   <img src="{{ static_asset('front-end/images/icons/banner3-circle2.svg') }}" class="banner3-circle2" alt="image">
+   <ul class="banner-social3 gap-5">
+      <li><a href="https://www.twitter.com/">Twitter</a></li>
+      <li><a href="https://www.facebook.com/">Facebook</a></li>
+      <li><a href="https://www.instagram.com/">Instagram</a></li>
+   </ul>
+   <div class="swiper banner3">
+      <div class="swiper-wrapper">
+         <div class="swiper-slide">
+            <div class="slider-bg-1">
+               <div class="container">
+                  <div class="row d-flex justify-content-start align-items-center">
+                     <div class="col-xl-7 col-lg-9">
+                        <div class="banner3-content">
+                           <span>Wellcome to Our Agency</span>
+                           <h1>Smart Ideas for your Brand are Here </h1>
+                           <p>Get the most of reduction in your team’s operating costs for the whole product which creates amazing UI/UX experiences.</p>
+                           <div class="button-group d-flex justify-content-lg-start justify-content-center align-items-center flex-wrap gap-4">
+                              <a href="about.html" class="eg-btn btn--primary3 btn--lg">LEARN MORE</a>
+                              <a href="contact.html" class="eg-btn btn--transparent btn--lg">GET IN TOUCH</a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="swiper-slide">
+            <div class="slider-bg-2">
+               <div class="container">
+                  <div class="row d-flex justify-content-start align-items-center">
+                     <div class="col-xl-7 col-lg-9">
+                        <div class="banner3-content">
+                           <span>Wellcome to Our Agency</span>
+                           <h1>Get Your Brand More Quick Selling</h1>
+                           <p>Get the most of reduction in your team’s operating costs for the whole product which creates amazing UI/UX experiences.</p>
+                           <div class="button-group d-flex justify-content-lg-start justify-content-center align-items-center flex-wrap gap-4">
+                              <a href="about.html" class="eg-btn btn--primary3 btn--lg">LEARN MORE</a>
+                              <a href="contact.html" class="eg-btn btn--transparent btn--lg">GET IN TOUCH</a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
             </div>
          </div>
       </div>
    </div>
-</section>
-<!--hero section end-->
-<!--promo section start-->
-<section class="section section-sm pb-0 mt-n8 z-5 position-relative">
+   <div class="banner3-pagination d-flex justify-content-center flex-column align-items-center gap-2"></div>
+</div>
+<div class="service3-section">
    <div class="container">
-      <div class="row">
-         <div class="col-md-6 col-lg-4 mb-md-4 mb-4 mb-lg-0">
-            <div class="single-promo-block promo-hover-bg-1 hover-image shadow p-5 rounded-custom bg-white">
-               <div class="icon icon-lg text-primary"><i class="fab fa-confluence"></i></div>
-               <div class="promo-block-content">
-                  <h5>Creative Design</h5>
-                  <p class="mb-0">Compellingly promote collaborative products without synergistic schemas. </p>
+      <div class="row justify-content-center g-4">
+         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-10">
+            <div class="service-item3 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay=".2s">
+               <div class="icon">
+                  <img src="{{ static_asset('front-end/images/icons/service31.svg')}}" alt="image">
                </div>
+               <div class="content">
+                  <h4><a href="service-details.html">Content Writer</a></h4>
+                  <p class="para">Get the most reduction in your team’s operation casts for the whole.</p>
+               </div>
+               <a href="service-details.html" class="read-more-icon">
+               <i class="bi bi-arrow-right"></i>
+               </a>
             </div>
          </div>
-         <div class="col-md-6 col-lg-4 mb-md-4 mb-4 mb-lg-0">
-            <div class="single-promo-block promo-hover-bg-2 hover-image shadow p-5 rounded-custom bg-white">
-               <div class="icon icon-lg text-primary"><i class="fas fa-bug"></i></div>
-               <div class="promo-block-content">
-                  <h5>Cyber Security</h5>
-                  <p class="mb-0">Enthusiastically scale mission-critical imperatives rather than an expanded array.</p>
+         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-10">
+            <div class="service-item3 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay=".4s">
+               <div class="icon">
+                  <img src="{{ static_asset('front-end/images/icons/service32.svg')}}" alt="image">
                </div>
+               <div class="content">
+                  <h4><a href="service-details.html">Website Devolopment</a></h4>
+                  <p class="para">We have the technology & industry stw expertise to solutions and execution.</p>
+               </div>
+               <a href="service-details.html" class="read-more-icon">
+               <i class="bi bi-arrow-right"></i>
+               </a>
             </div>
          </div>
-         <div class="col-md-6 col-lg-4 mb-md-4 mb-4 mb-lg-0">
-            <div class="single-promo-block promo-hover-bg-3 hover-image shadow p-5 rounded-custom bg-white">
-               <div class="icon icon-lg text-primary"><i class="fas fa-cloud-moon"></i></div>
-               <div class="promo-block-content">
-                  <h5>Cloud Services</h5>
-                  <p class="mb-0">Rapidiously create cooperative resources rather than client-based leadership skills.</p>
+         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-10">
+            <div class="service-item3 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay=".6s">
+               <div class="icon">
+                  <img src="{{ static_asset('front-end/images/icons/service33.svg')}}" alt="image">
                </div>
+               <div class="content">
+                  <h4><a href="service-details.html">Creative Design</a></h4>
+                  <p class="para">Get the most reduction in your team’s operation casts for the whole.</p>
+               </div>
+               <a href="service-details.html" class="read-more-icon">
+               <i class="bi bi-arrow-right"></i>
+               </a>
+            </div>
+         </div>
+         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-10">
+            <div class="service-item3 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay=".8s">
+               <div class="icon">
+                  <img src="{{ static_asset('front-end/images/icons/service34.svg')}}" alt="image">
+               </div>
+               <div class="content">
+                  <h4><a href="service-details.html">Web Security</a></h4>
+                  <p class="para">We have the technology & industry stw expertise to solutions and execution</p>
+               </div>
+               <a href="service-details.html" class="read-more-icon">
+               <i class="bi bi-arrow-right"></i>
+               </a>
             </div>
          </div>
       </div>
    </div>
-</section>
-<!--promo section end-->
-<!--about section start-->
-<section class="section section-lg  ">
-   <div class="container">
-      <div class="row justify-content-between align-items-center">
-         <div class="col-md-12 col-lg-6 mb-4 mb-md-4 mb-lg-0">
-            <div class="card bg-primary position-relative  shadow-lg fancy-radius p-3">
-               <div class="dot-shape-top position-absolute">
-                  <img src="{{ static_asset('front-end/img/color-shape.svg')}}" alt="dot" class="img-fluid">
-               </div>
-               <img class="fancy-radius img-fluid" src="{{ static_asset('front-end/img/about-us-2.jpg')}}" alt="modern desk">
-               <div class="dot-shape position-absolute bottom-0">
-                  <img src="{{ static_asset('front-end/img/dot-shape.png')}}" alt="dot">
+</div>
+<div class="about-section3 pt-120">
+   <img src="{{ static_asset('front-end/images/bg/about3-vector2.svg')}}" class="about3-vector2" alt="image">
+   <div class="container-fluid">
+      <div class="row g-xxl-0">
+         <div class="col-lg-6 wow fadeInLeft" data-wow-duration="1.5s" data-wow-delay=".2s">
+            <div class="section-title3 primary4 text-md-start text-cener">
+               <span>-About Us-</span>
+               <h3>About Our Company</h3>
+            </div>
+            <div class="about-vdo">
+               <div class="company-vdo style-2 position-relative wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="0.2s">
+                  <div class="video-play style-4">
+                     <a href="https://www.youtube.com/watch?v=u31qwQUeGuM" class="popup-youtube video-icon"><i class="bx bx-play"></i></a>
+                  </div>
                </div>
             </div>
          </div>
-         <div class="col-md-12 col-lg-5">
-            <div class="video-promo-content">
-               <h2>Total Solutions for Your Business Here</h2>
-               <p class="lead">Interactively develop timely niche markets before extensive imperatives. Professionally
-                  repurpose strategies.
-               </p>
-               <ul class="list-unstyled tech-feature-list">
-                  <li class="py-1"><span class="icon icon-xs mr-2 text-secondary"> <i class="ti-control-forward"></i></span><strong>Creative</strong> Websites Design</li>
-                  <li class="py-1"><span class="icon icon-xs mr-2 text-secondary"> <i class="ti-control-forward"></i></span><strong>Accounting</strong> Procedures Guidebook</li>
-                  <li class="py-1"><span class="icon icon-xs mr-2 text-secondary"> <i class="ti-control-forward"></i></span><strong>Cost</strong> Accounting Fundamentals</li>
-                  <li class="py-1"><span class="icon icon-xs mr-2 text-secondary"> <i class="ti-control-forward"></i></span><strong>SEO</strong> Optimization Services</li>
+         <div class="col-lg-6">
+            <div class="about3-content wow fadeInRight" data-wow-duration="1.5s" data-wow-delay=".2s">
+               <img src="{{ static_asset('front-end/images/bg/about3-vctr.png')}}" alt="image" class="about3-vctr">
+               <h3>We create some things, Design for your success future.</h3>
+               <p class="para">Lorem Ipsum is simply dumm of free available in market the way printing and typesetting industry has been the industry's standard dummy text ever.</p>
+               <ul class="about3-list">
+                  <li>Price of additional materials or parts (if needed)</li>
+                  <li>Transportation cost for carrying new materials/parts</li>
+                  <li>You will get 100% money back offer.</li>
                </ul>
-               <a href="#" class="btn btn-primary  mt-3">View Services</a>
-            </div>
-         </div>
-      </div>
-   </div>
-</section>
-<!--about section end-->
-<!--services section start-->
-<section class="section services-section ptb-100 bg-soft">
-   <div class="container">
-      <div class="row justify-content-center">
-         <div class="col-md-8">
-            <div class="section-heading text-center mb-5">
-               <h2>We Provide Quality Services</h2>
-               <p class="lead">Efficiently aggregate end-to-end core competencies without maintainable. Dynamically
-                  foster tactical solutions without enabled value.
-               </p>
-            </div>
-         </div>
-      </div>
-      <div class="row">
-         <div class="col-lg-6 col-md-6 col-sm-6 mb-4 mb-md-4">
-            <div class="services-single d-flex p-5 shadow-sm bg-white rounded">
-               <div class="icon icon-lg mr-4 text-secondary">
-                  <i class="ti-announcement"></i>
-               </div>
-               <div class="services-content-wrap">
-                  <h3 class="h6">Marketing Services</h3>
-                  <p>Progressively empower business "outside the box" thinking with resource-leveling
-                     partnerships.
-                  </p>
-                  <a href="services-details.html" class="link-with-icon text-default font-small font-weight-bold" target="_blank">Read more <span> <i class="fas fa-angle-right"></i></span></a>
-               </div>
-            </div>
-         </div>
-         <div class="col-lg-6 col-md-6 col-sm-6 mb-4 mb-md-4">
-            <div class="services-single d-flex p-5 shadow-sm bg-white rounded">
-               <div class="icon icon-lg mr-4 text-secondary">
-                  <i class="ti-light-bulb"></i>
-               </div>
-               <div class="services-content-wrap">
-                  <h3 class="h6">Web App Development</h3>
-                  <p>Quickly pontificate holistic e-commerce rather than goal web-readiness enhance inexpensive.</p>
-                  <a href="services-details.html" class="link-with-icon text-default font-small font-weight-bold" target="_blank">Read more <span> <i class="fas fa-angle-right"></i></span></a>
-               </div>
-            </div>
-         </div>
-         <div class="col-lg-6 col-md-6 col-sm-6 mb-4 mb-md-4">
-            <div class="services-single d-flex p-5 shadow-sm bg-white rounded">
-               <div class="icon icon-lg mr-4 text-secondary">
-                  <i class="ti-headphone-alt"></i>
-               </div>
-               <div class="services-content-wrap">
-                  <h3 class="h6">24/7 Call Center Service</h3>
-                  <p>Authoritatively reinvent multimedia based niches with global portals orchestrate client-centered .</p>
-                  <a href="services-details.html" class="link-with-icon text-default font-small font-weight-bold" target="_blank">Read more <span> <i class="fas fa-angle-right"></i></span></a>
-               </div>
-            </div>
-         </div>
-         <div class="col-lg-6 col-md-6 col-sm-6 mb-4 mb-md-4">
-            <div class="services-single d-flex p-5 shadow-sm bg-white rounded">
-               <div class="icon icon-lg mr-4 text-secondary">
-                  <i class="ti-bell"></i>
-               </div>
-               <div class="services-content-wrap">
-                  <h3 class="h6">Social Media Marketing</h3>
-                  <p>Assertively leverage other's standardized e-services with fully tested e-commerce synergistic. </p>
-                  <a href="services-details.html" class="link-with-icon text-default font-small font-weight-bold" target="_blank">Read more <span> <i class="fas fa-angle-right"></i></span></a>
-               </div>
-            </div>
-         </div>
-         <div class="col-lg-6 col-md-6 col-sm-6 mb-4 mb-md-4">
-            <div class="services-single d-flex p-5 shadow-sm bg-white rounded">
-               <div class="icon icon-lg mr-4 text-secondary">
-                  <i class="ti-briefcase"></i>
-               </div>
-               <div class="services-content-wrap">
-                  <h3 class="h6">Corporate Business</h3>
-                  <p>Enthusiastically scale client-centric supply chains vis-a-vis enabled benefits empower global core.</p>
-                  <a href="services-details.html" class="link-with-icon text-default font-small font-weight-bold" target="_blank">Read more <span> <i class="fas fa-angle-right"></i></span></a>
-               </div>
-            </div>
-         </div>
-         <div class="col-lg-6 col-md-6 col-sm-6 mb-4 mb-md-4">
-            <div class="services-single d-flex p-5 shadow-sm bg-white rounded">
-               <div class="icon icon-lg mr-4 text-secondary">
-                  <i class="ti-vector"></i>
-               </div>
-               <div class="services-content-wrap">
-                  <h3 class="h6">Creative Consultancy</h3>
-                  <p>Conveniently productize corporate imperatives for innovative best practices ideas ethical change.</p>
-                  <a href="services-details.html" class="link-with-icon text-default font-small font-weight-bold" target="_blank">Read more <span> <i class="fas fa-angle-right"></i></span></a>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-</section>
-<!--services section end-->
-
-<!--team section start-->
-<section class="section section-lg ">
-   <div class="container">
-      <div class="row justify-content-center">
-         <div class="col-lg-8">
-            <div class="section-heading text-center mb-5">
-               <h2>Our Team</h2>
-               <p class="lead">Dynamically pursue reliable convergence rather than 24/7 process improvements
-                  develop end-to-end customer service.
-               </p>
-            </div>
-         </div>
-      </div>
-      <div class="row">
-         <div class="col-12 col-md-6 col-lg-4 mb-md-4 mb-lg-0 mb-4">
-            <div class="profile-card">
-               <div class="card bg-soft  shadow-sm animate-hover border-variant-soft">
-                  <div class="profile-image-small  bg-white  shadow-inset shadow border border-light rounded-circle p-1 mt-5 mb-4">
-                     <img src="{{ static_asset('front-end/img/team/team-6.jpg')}}" class="card-img-top rounded-circle" alt="Christopher Avatar">
-                  </div>
-                  <div class="card-body text-center px-5 pb-5 pt-0">
-                     <h3 class="h5 mb-2">John Q. Public</h3>
-                     <span class="h6 font-weight-normal text-gray mb-3">Developer</span>
-                     <ul class="list-unstyled d-flex my-3 justify-content-center">
-                        <li>
-                           <a href="#" target="_blank" aria-label="facebook social link" class="icon icon-xs icon-facebook mr-3" data-toggle="tooltip" data-placement="top" title="" data-original-title="50k Like">
-                           <span class="fab fa-facebook-f"></span>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" target="_blank" aria-label="twitter social link" class="icon icon-xs icon-twitter mr-3" data-toggle="tooltip" data-placement="top" title="" data-original-title="40k Followers">
-                           <span class="fab fa-twitter"></span>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" target="_blank" aria-label="slack social link" class="icon icon-xs icon-slack mr-3" data-toggle="tooltip" data-placement="top" title="" data-original-title="25k Subscribe">
-                           <span class="fab fa-youtube"></span>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" target="_blank" aria-label="dribbble social link" class="icon icon-xs icon-dribbble mr-3" data-toggle="tooltip" data-placement="top" title="" data-original-title="2k Project">
-                           <span class="fab fa-dribbble"></span>
-                           </a>
-                        </li>
-                     </ul>
-                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="col-12 col-md-6 col-lg-4 mb-md-4 mb-lg-0 mb-4">
-            <div class="profile-card">
-               <div class="card bg-soft  shadow-sm animate-hover border-variant-soft">
-                  <div class="profile-image-small  bg-white  shadow-inset shadow border border-light rounded-circle p-1 mt-5 mb-4">
-                     <img src="{{ static_asset('front-end/img/team/team-1.jpg')}}" class="card-img-top rounded-circle" alt="Christopher Avatar">
-                  </div>
-                  <div class="card-body text-center px-5 pb-5 pt-0">
-                     <h3 class="h5 mb-2">Madurai Mani Iyer</h3>
-                     <span class="h6 font-weight-normal text-gray mb-3">Developer</span>
-                     <ul class="list-unstyled d-flex my-3 justify-content-center">
-                        <li>
-                           <a href="#" target="_blank" aria-label="facebook social link" class="icon icon-xs icon-facebook mr-3" data-toggle="tooltip" data-placement="top" title="" data-original-title="50k Like">
-                           <span class="fab fa-facebook-f"></span>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" target="_blank" aria-label="twitter social link" class="icon icon-xs icon-twitter mr-3" data-toggle="tooltip" data-placement="top" title="" data-original-title="40k Followers">
-                           <span class="fab fa-twitter"></span>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" target="_blank" aria-label="slack social link" class="icon icon-xs icon-slack mr-3" data-toggle="tooltip" data-placement="top" title="" data-original-title="25k Subscribe">
-                           <span class="fab fa-youtube"></span>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" target="_blank" aria-label="dribbble social link" class="icon icon-xs icon-dribbble mr-3" data-toggle="tooltip" data-placement="top" title="" data-original-title="2k Project">
-                           <span class="fab fa-dribbble"></span>
-                           </a>
-                        </li>
-                     </ul>
-                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="col-12 col-md-6 col-lg-4 mb-md-4 mb-lg-0 mb-4">
-            <div class="profile-card">
-               <div class="card bg-soft  shadow-sm animate-hover border-variant-soft">
-                  <div class="profile-image-small  bg-white  shadow-inset shadow border border-light rounded-circle p-1 mt-5 mb-4">
-                     <img src="{{ static_asset('front-end/img/team/team-4.jpg')}}" class="card-img-top rounded-circle" alt="Christopher Avatar">
-                  </div>
-                  <div class="card-body text-center px-5 pb-5 pt-0">
-                     <h3 class="h5 mb-2">Maria J. Go</h3>
-                     <span class="h6 font-weight-normal text-gray mb-3">Developer</span>
-                     <ul class="list-unstyled d-flex my-3 justify-content-center">
-                        <li>
-                           <a href="#" target="_blank" aria-label="facebook social link" class="icon icon-xs icon-facebook mr-3" data-toggle="tooltip" data-placement="top" title="" data-original-title="50k Like">
-                           <span class="fab fa-facebook-f"></span>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" target="_blank" aria-label="twitter social link" class="icon icon-xs icon-twitter mr-3" data-toggle="tooltip" data-placement="top" title="" data-original-title="40k Followers">
-                           <span class="fab fa-twitter"></span>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" target="_blank" aria-label="slack social link" class="icon icon-xs icon-slack mr-3" data-toggle="tooltip" data-placement="top" title="" data-original-title="25k Subscribe">
-                           <span class="fab fa-youtube"></span>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" target="_blank" aria-label="dribbble social link" class="icon icon-xs icon-dribbble mr-3" data-toggle="tooltip" data-placement="top" title="" data-original-title="2k Project">
-                           <span class="fab fa-dribbble"></span>
-                           </a>
-                        </li>
-                     </ul>
-                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+               <div class="about-footer d-flex jusify-content-start align-items-center flex-wrap gap-4">
+                  <a href="about.html" class="eg-btn btn--primary3 btn--lg">KNOW MORE</a>
+                  <div class="experience d-flex flex-row align-items-center">
+                     <svg width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_445_100)">
+                           <path d="M21.45 0.223437C21.2695 0.403906 21.2266 0.532812 21.2266 0.859375C21.2266 1.18594 21.2695 1.31484 21.45 1.49531C21.6305 1.67578 21.7594 1.71875 22.0859 1.71875C22.4125 1.71875 22.5414 1.67578 22.7219 1.49531C22.9023 1.31484 22.9453 1.18594 22.9453 0.859375C22.9453 0.532812 22.9023 0.403906 22.7219 0.223437C22.5414 0.0429688 22.4125 0 22.0859 0C21.7594 0 21.6305 0.0429688 21.45 0.223437Z" />
+                           <path d="M16.9898 0.764866C14.4547 1.59846 12.1258 3.0594 10.3039 4.95861C8.1125 7.23596 6.64297 10.0633 5.98984 13.2688C5.82656 14.1024 5.80078 14.4891 5.80078 16.3281C5.80078 18.1672 5.82656 18.5539 5.98984 19.3875C6.64297 22.593 8.06953 25.343 10.2867 27.6719C10.7508 28.1617 11 28.4883 10.9742 28.5656C10.9484 28.6344 9.77969 30.7055 8.3875 33.1719C6.13594 37.1336 5.84375 37.6922 5.84375 38.0188C5.84375 38.5516 6.14453 38.8438 6.69453 38.8438C6.90938 38.8352 8.34453 38.5774 9.88281 38.2508C11.9367 37.8211 12.693 37.6922 12.7359 37.7696C12.7703 37.8211 13.2602 39.1789 13.8359 40.786C14.5922 42.9086 14.9187 43.7422 15.0648 43.8453C15.3398 44.0688 15.9672 44.0516 16.2164 43.8196C16.3195 43.7164 17.6773 41.3961 19.2242 38.6633C20.7711 35.9305 22.0602 33.6961 22.0859 33.6961C22.1117 33.6961 23.4008 35.9305 24.9477 38.6633C26.4945 41.3961 27.8523 43.7164 27.9641 43.8196C28.2477 44.086 28.8664 44.0688 29.1414 43.7938C29.2875 43.6563 29.657 42.7196 30.3273 40.8117C30.8687 39.2821 31.35 37.95 31.4016 37.8469C31.4961 37.6664 31.5047 37.6664 34.2891 38.2508C35.8273 38.5688 37.2625 38.8352 37.4773 38.8438C38.0273 38.8438 38.3281 38.5516 38.3281 38.0188C38.3281 37.6836 38.0445 37.1422 35.793 33.1719C34.3922 30.7141 33.232 28.643 33.2063 28.5742C33.1719 28.4883 33.4039 28.1789 33.8852 27.6719C36.1023 25.343 37.5289 22.593 38.182 19.3875C38.3453 18.5539 38.3711 18.1758 38.3711 16.3281C38.3711 14.4891 38.3453 14.1024 38.1734 13.2688C37.5289 10.0719 36.068 7.23596 33.868 4.95861C32.5188 3.55783 31.1867 2.58674 29.3648 1.66721C28.0414 1.00549 26.1766 0.386742 25.7469 0.464085C25.3172 0.541428 25.0508 0.876583 25.0508 1.33205C25.0508 1.89924 25.2656 2.07112 26.4516 2.44924C31.625 4.10783 35.243 8.18127 36.4117 13.6641C36.6523 14.7985 36.6266 18.0297 36.3688 19.1985C35.0453 25.1367 30.6367 29.4766 24.7672 30.6367C23.2633 30.9375 20.9086 30.9375 19.4047 30.6367C14.1797 29.6055 9.96016 25.936 8.29297 20.9516C7.7 19.1727 7.61406 18.5797 7.61406 16.3281C7.61406 14.0766 7.7 13.4836 8.29297 11.7047C9.79688 7.21877 13.2859 3.83284 17.8492 2.41487C18.8891 2.0883 19.1211 1.89065 19.1211 1.32346C19.1211 1.03127 19.0695 0.902367 18.8977 0.721897C18.5453 0.369553 18.1586 0.378147 16.9898 0.764866ZM13.2516 30.1125C15.1164 31.3242 17.5398 32.2266 19.6969 32.5102C20.118 32.5703 20.4617 32.6477 20.4703 32.6906C20.4961 32.8024 15.8641 40.9063 15.8039 40.8375C15.7781 40.8031 15.3914 39.7547 14.9531 38.5C14.0422 35.9133 13.9477 35.75 13.3289 35.75C13.1141 35.75 11.9453 35.9649 10.7422 36.2141C9.53906 36.4719 8.54219 36.6696 8.53359 36.661C8.50781 36.6438 12.4781 29.6485 12.5125 29.6485C12.5297 29.6485 12.8648 29.8547 13.2516 30.1125ZM33.6875 33.1719C34.7703 35.0797 35.6469 36.6524 35.6383 36.661C35.6297 36.6696 34.6328 36.4719 33.4297 36.2141C32.2266 35.9649 31.0578 35.7586 30.843 35.75C30.2242 35.75 30.1297 35.9133 29.2188 38.5C28.7805 39.7547 28.3938 40.8031 28.368 40.8375C28.3164 40.8977 23.7102 32.8883 23.6844 32.6992C23.6844 32.6563 24.0281 32.5703 24.4664 32.5102C26.6578 32.218 29.3047 31.2211 31.0234 30.0438C31.3328 29.8289 31.6078 29.6656 31.6508 29.6742C31.6852 29.6828 32.6047 31.2555 33.6875 33.1719Z" />
+                           <path d="M20.1523 3.52344C19.2328 3.66953 17.9352 4.03906 17.0586 4.41719C15.357 5.13047 14.1023 6.01562 12.7531 7.41641C11.0344 9.19531 9.94297 11.2578 9.40156 13.75C9.27266 14.3344 9.23828 14.8414 9.23828 16.3281C9.23828 18.3391 9.31563 18.8977 9.80547 20.393C10.4414 22.3352 11.4125 23.882 12.968 25.4461C14.8672 27.3453 16.8867 28.4453 19.5078 29.0125C20.5563 29.2445 23.6156 29.2445 24.6641 29.0125C27.3023 28.4367 29.2961 27.3453 31.2039 25.4461C33.1031 23.5383 34.1945 21.5445 34.7703 18.9062C35.0023 17.8578 35.0023 14.7984 34.7703 13.75C34.1945 11.1117 33.1031 9.11797 31.2039 7.21016C29.3305 5.33672 27.4227 4.27969 24.8445 3.67813C23.9938 3.48047 21.0547 3.38594 20.1523 3.52344ZM23.9766 5.38828C28.5312 6.14453 32.2523 9.86563 33.0344 14.4289C33.3266 16.1219 33.1719 18.2188 32.6391 19.8086C31.7195 22.5414 29.7602 24.8359 27.1477 26.2023C24.5438 27.5688 21.3297 27.8094 18.5109 26.8555C15.3398 25.7727 12.6156 23.0398 11.55 19.8773C10.8023 17.6516 10.8023 15.0047 11.5586 12.7617C12.057 11.2492 13.0797 9.63359 14.2828 8.44766C16.8953 5.87812 20.3672 4.77812 23.9766 5.38828Z" />
+                           <path d="M21.682 8.0352C21.4328 8.13833 21.2781 8.40473 20.2898 10.3727L19.1813 12.5985L16.9984 12.925C15.8039 13.1055 14.6781 13.286 14.5063 13.329C14.0852 13.4407 13.8359 13.7672 13.8359 14.2055C13.8359 14.5493 13.8875 14.6094 15.6148 16.3454L17.4023 18.1329L17.0328 20.35C16.5945 23.0227 16.5859 23.1344 16.9211 23.4696C17.368 23.9079 17.5656 23.8477 19.9633 22.6102L22.0945 21.5016L24.2172 22.6102C26.6062 23.8477 26.8039 23.9079 27.2508 23.4696C27.5859 23.1344 27.5773 23.0227 27.1391 20.35L26.7695 18.1329L28.557 16.3454C30.2844 14.6094 30.3359 14.5493 30.3359 14.2055C30.3359 13.7672 30.0867 13.4407 29.6656 13.329C29.4938 13.286 28.368 13.0969 27.1734 12.925L24.9906 12.5985L23.882 10.3727C22.8594 8.33599 22.7391 8.14692 22.4727 8.02661C22.1117 7.88052 22.0344 7.88052 21.682 8.0352ZM22.8766 12.504C23.3664 13.475 23.7016 14.0508 23.8477 14.1454C23.9766 14.2313 24.6984 14.3774 25.6695 14.5321C26.5633 14.6696 27.3367 14.7899 27.4055 14.7985C27.4656 14.8157 26.9844 15.3399 26.3313 15.9758C25.6695 16.6118 25.0938 17.2133 25.0336 17.3079C24.8789 17.5743 24.8961 17.9438 25.1797 19.5852C25.3172 20.4102 25.4203 21.1063 25.4031 21.1149C25.3859 21.1321 24.6984 20.7969 23.8734 20.3672C22.8594 19.8516 22.275 19.5938 22.0859 19.5938C21.8969 19.5938 21.3125 19.8516 20.2984 20.3758C19.4734 20.7969 18.7859 21.1407 18.7688 21.1235C18.7516 21.1063 18.8547 20.4102 18.9922 19.5852C19.2758 17.9438 19.293 17.5829 19.1383 17.3079C19.0781 17.2047 18.4938 16.6118 17.8406 15.9758C17.1703 15.3313 16.6977 14.8157 16.7664 14.7985C16.8352 14.7899 17.6086 14.6696 18.5023 14.5321C19.4734 14.3774 20.1953 14.2313 20.3242 14.1454C20.4703 14.0508 20.8055 13.475 21.2953 12.504C21.7078 11.679 22.0602 11 22.0859 11C22.1117 11 22.4641 11.679 22.8766 12.504Z" />
+                        </g>
+                        <defs>
+                           <clipPath id="clip0_445_100">
+                              <rect width="44" height="44" fill="white" />
+                           </clipPath>
+                        </defs>
+                     </svg>
+                     <h4 class="mb-0">10+ Years Experience</h4>
                   </div>
                </div>
             </div>
          </div>
       </div>
    </div>
-</section>
-<!--team section end-->
-<!--testimonial section start-->
-<section class="section section-lg bg-soft">
+</div>
+<div class="portfolio-section pt-120 pb-120">
    <div class="container">
       <div class="row justify-content-center">
-         <div class="col-md-9 col-lg-8">
-            <div class="section-heading mb-5 text-center">
-               <h2>What Clients Say About Us</h2>
-               <p class="lead">
-                  Rapidiously morph transparent internal or "organic" sources whereas resource sucking
-                  e-business innovate compelling internal.
-               </p>
+         <div class="col-lg-6 col-md-8 col-sm-10">
+            <div class="section-title3 primary3 text-cener">
+               <span>-Creative Portfolio-</span>
+               <h3>Our Work Example</h3>
+               <p>Get the most of reduction in your team’s operating costs for the whole product which creates amazing UI/UX experiences.</p>
             </div>
          </div>
       </div>
-      <div class="row">
-         <div class="col-12 col-lg-6 mb-4 mb-md-4 mb-lg-0">
-            <div class="testimonial-single shadow-sm bg-white rounded-custom p-5">
-               <div class="quotation mb-4">
-                  <span class="icon icon-md icon-lg icon-light"><i class="fas fa-quote-left"></i></span>
+      <div class="row justify-content-center align-items-start g-4 position-relative">
+         <img src="{{ static_asset('front-end/images/bg/dot-squire.svg')}}" alt="image" class="dot-squire img-fluid">
+         <img src="{{ static_asset('front-end/images/bg/portfolio-vctor.png')}}" alt="image" class="portfolio-vector img-fluid">
+         <div class="col-lg-4 col-md-6 col-sm-10">
+            <div class="portfolio-item3 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay=".2s">
+               <img src="{{ static_asset('front-end/images/bg/portfolio31.png')}}" alt="image">
+               <div class="overlay">
+                  <div class="overlay-content">
+                     <p>Plugin</p>
+                     <h4><a href="project-details.html">Pocket-Sized Notebooks Hold Minia Ture.</a></h4>
+                     <a href="project-details.html"><i class="bi bi-arrow-up-right"></i></a>
+                  </div>
                </div>
-               <blockquote class="blockquote">
-                  Assertively procrastinate distributed relationships whereas equity invested intellectual capital everything energistically underwhelm proactive.
-               </blockquote>
-               <div class="d-flex justify-content-md-between justify-content-lg-between align-items-center pt-3">
-                  <div class="media align-items-center">
-                     <img src="{{ static_asset('front-end/img/team/team-4.jpg')}}" alt="team" class="avatar avatar-sm mr-3">
-                     <div class="media-body">
-                        <h6 class="mb-0">Kyan Boards</h6>
-                        <small>CEO, ThemeTags</small>
+            </div>
+         </div>
+         <div class="col-lg-4 col-md-6 col-sm-10">
+            <div class="portfolio-item3 mt-50 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay=".4s">
+               <img src="{{ static_asset('front-end/images/bg/portfolio32.png')}}" alt="image">
+               <div class="overlay">
+                  <div class="overlay-content">
+                     <p>Mockup</p>
+                     <h4><a href="project-details.html">A4 Size Flyer Mockup Design.</a></h4>
+                     <a href="project-details.html"><i class="bi bi-arrow-up-right"></i></a>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-lg-4 col-md-6 col-sm-10">
+            <div class="portfolio-item3 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay=".6s">
+               <img src="{{ static_asset('front-end/images/bg/portfolio33.png')}}" alt="image">
+               <div class="overlay">
+                  <div class="overlay-content">
+                     <p>Ui Illustration</p>
+                     <h4><a href="project-details.html">Ui/Ux Illustration Design..</a></h4>
+                     <a href="project-details.html"><i class="bi bi-arrow-up-right"></i></a>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-lg-4 col-md-6 col-sm-10">
+            <div class="portfolio-item3 mt-minus50 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay=".8s">
+               <img src="{{ static_asset('front-end/images/bg/portfolio34.png')}}" alt="image">
+               <div class="overlay">
+                  <div class="overlay-content">
+                     <p>Box Mockup</p>
+                     <h4><a href="project-details.html">PPocket-Sized Notebooks Ture Paintings</a></h4>
+                     <a href="project-details.html"><i class="bi bi-arrow-up-right"></i></a>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-lg-4 col-md-6 col-sm-10">
+            <div class="portfolio-item3 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="1s">
+               <img src="{{ static_asset('front-end/images/bg/portfolio35.png')}}" alt="image">
+               <div class="overlay">
+                  <div class="overlay-content">
+                     <p>Web</p>
+                     <h4><a href="project-details.html">Amazing web card design with overlay.</a></h4>
+                     <a href="project-details.html"><i class="bi bi-arrow-up-right"></i></a>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-lg-4 col-md-6 col-sm-10">
+            <div class="portfolio-item3 mt-minus50 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="1.2s">
+               <img src="{{ static_asset('front-end/images/bg/portfolio36.png')}}" alt="image">
+               <div class="overlay">
+                  <div class="overlay-content">
+                     <p>SEO</p>
+                     <h4><a href="project-details.html">SEO Optimization for your website.</a></h4>
+                     <a href="project-details.html"><i class="bi bi-arrow-up-right"></i></a>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="team-section pt-120 pb-120">
+   <div class="container">
+      <div class="row justify-content-center">
+         <div class="col-lg-6 col-md-8 col-sm-10">
+            <div class="section-title3 primary3 text-cener">
+               <span>-Creative Team-</span>
+               <h3>Meet Our Team Member</h3>
+               <p>Get the most of reduction in your team’s operating costs for the whole product which creates amazing UI/UX experiences.</p>
+            </div>
+         </div>
+      </div>
+      <div class="row justify-content-center align-items-start g-4 position-relative">
+         <img src="{{ static_asset('front-end/images/bg/portfolio-vctor.png')}}" alt="image" class="portfolio-vector img-fluid">
+         <div class="col-xl-4 col-lg-6 col-md-6 col-sm-10">
+            <div class="single-team1 style-2 hover-border1 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="0.2s">
+               <div class="team-image">
+                  <img src="{{ static_asset('front-end/images/bg/team31.png')}}" alt="image">
+                  <div class="social-area gap-3">
+                     <ul class="social-links d-flex justify-content-center align-items-center flex-column gap-3">
+                        <li><a href="https://www.instagram.com/"><i class='bx bxl-instagram'></i></a></li>
+                        <li><a href="https://www.facebook.com/"><i class='bx bxl-facebook'></i></a></li>
+                        <li><a href="https://www.twitter.com/"><i class='bx bxl-twitter'></i></a></li>
+                     </ul>
+                     <div class="social-plus"><i class='bx bx-plus'></i></div>
+                  </div>
+                  <svg viewBox="0 0 430 195" xmlns="http://www.w3.org/2000/svg">
+                     <path d="M160.378 64.0315C43.5811 57 15.7702 14.7334 3.40949e-05 0.000915527L4.53134e-05 195.001L430 195L430 157.164C378.284 73 297.179 72.2673 160.378 64.0315Z" />
+                  </svg>
+                  <div class="team-content">
+                     <h4 class="name">Marvin McKinney Sr</h4>
+                     <p class="designation">CEO/Founder</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-xl-4 col-lg-6 col-md-6 col-sm-10">
+            <div class="single-team1 style-2 hover-border1 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="0.4s">
+               <div class="team-image">
+                  <img src="{{ static_asset('front-end/images/bg/team32.png')}}" alt="image">
+                  <div class="social-area gap-3">
+                     <ul class="social-links d-flex justify-content-center align-items-center flex-column gap-3">
+                        <li><a href="https://www.instagram.com/"><i class='bx bxl-instagram'></i></a></li>
+                        <li><a href="https://www.facebook.com/"><i class='bx bxl-facebook'></i></a></li>
+                        <li><a href="https://www.twitter.com/"><i class='bx bxl-twitter'></i></a></li>
+                     </ul>
+                     <div class="social-plus"><i class='bx bx-plus'></i></div>
+                  </div>
+                  <svg viewBox="0 0 430 195" xmlns="http://www.w3.org/2000/svg">
+                     <path d="M160.378 64.0315C43.5811 57 15.7702 14.7334 3.40949e-05 0.000915527L4.53134e-05 195.001L430 195L430 157.164C378.284 73 297.179 72.2673 160.378 64.0315Z" />
+                  </svg>
+                  <div class="team-content">
+                     <h4 class="name">Cameron Williamson</h4>
+                     <p class="designation">Managing Director</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-xl-4 col-lg-6 col-md-6 col-sm-10">
+            <div class="single-team1 style-2 hover-border1 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="0.6s">
+               <div class="team-image">
+                  <img src="{{ static_asset('front-end/images/bg/team33.png')}}" alt="image">
+                  <div class="social-area gap-3">
+                     <ul class="social-links d-flex justify-content-center align-items-center flex-column gap-3">
+                        <li><a href="https://www.instagram.com/"><i class='bx bxl-instagram'></i></a></li>
+                        <li><a href="https://www.facebook.com/"><i class='bx bxl-facebook'></i></a></li>
+                        <li><a href="https://www.twitter.com/"><i class='bx bxl-twitter'></i></a></li>
+                     </ul>
+                     <div class="social-plus"><i class='bx bx-plus'></i></div>
+                  </div>
+                  <svg viewBox="0 0 430 195" xmlns="http://www.w3.org/2000/svg">
+                     <path d="M160.378 64.0315C43.5811 57 15.7702 14.7334 3.40949e-05 0.000915527L4.53134e-05 195.001L430 195L430 157.164C378.284 73 297.179 72.2673 160.378 64.0315Z" />
+                  </svg>
+                  <div class="team-content">
+                     <h4 class="name">Leslie Alexander</h4>
+                     <p class="designation">Web Developer</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-xl-4 col-lg-6 col-md-6 col-sm-10">
+            <div class="single-team1 style-2 hover-border1 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="0.8s">
+               <div class="team-image">
+                  <img src="{{ static_asset('front-end/images/bg/team34.png')}}" alt="image">
+                  <div class="social-area gap-3">
+                     <ul class="social-links d-flex justify-content-center align-items-center flex-column gap-3">
+                        <li><a href="https://www.instagram.com/"><i class='bx bxl-instagram'></i></a></li>
+                        <li><a href="https://www.facebook.com/"><i class='bx bxl-facebook'></i></a></li>
+                        <li><a href="https://www.twitter.com/"><i class='bx bxl-twitter'></i></a></li>
+                     </ul>
+                     <div class="social-plus"><i class='bx bx-plus'></i></div>
+                  </div>
+                  <svg viewBox="0 0 430 195" xmlns="http://www.w3.org/2000/svg">
+                     <path d="M160.378 64.0315C43.5811 57 15.7702 14.7334 3.40949e-05 0.000915527L4.53134e-05 195.001L430 195L430 157.164C378.284 73 297.179 72.2673 160.378 64.0315Z" />
+                  </svg>
+                  <div class="team-content">
+                     <h4 class="name">Darlene Robertson</h4>
+                     <p class="designation">Ui/Ux Designer</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-xl-4 col-lg-6 col-md-6 col-sm-10">
+            <div class="single-team1 style-2 hover-border1 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="1s">
+               <div class="team-image">
+                  <img src="{{ static_asset('front-end/images/bg/team35.png')}}" alt="image">
+                  <div class="social-area gap-3">
+                     <ul class="social-links d-flex justify-content-center align-items-center flex-column gap-3">
+                        <li><a href="https://www.instagram.com/"><i class='bx bxl-instagram'></i></a></li>
+                        <li><a href="https://www.facebook.com/"><i class='bx bxl-facebook'></i></a></li>
+                        <li><a href="https://www.twitter.com/"><i class='bx bxl-twitter'></i></a></li>
+                     </ul>
+                     <div class="social-plus"><i class='bx bx-plus'></i></div>
+                  </div>
+                  <svg viewBox="0 0 430 195" xmlns="http://www.w3.org/2000/svg">
+                     <path d="M160.378 64.0315C43.5811 57 15.7702 14.7334 3.40949e-05 0.000915527L4.53134e-05 195.001L430 195L430 157.164C378.284 73 297.179 72.2673 160.378 64.0315Z" />
+                  </svg>
+                  <div class="team-content">
+                     <h4 class="name">Courtney Henry</h4>
+                     <p class="designation">Digital Marketer</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-xl-4 col-lg-6 col-md-6 col-sm-10">
+            <div class="single-team1 style-2 hover-border1 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="1.2s">
+               <div class="team-image">
+                  <img src="{{ static_asset('front-end/images/bg/team36.png')}}" alt="image">
+                  <div class="social-area gap-3">
+                     <ul class="social-links d-flex justify-content-center align-items-center flex-column gap-3">
+                        <li><a href="https://www.instagram.com/"><i class='bx bxl-instagram'></i></a></li>
+                        <li><a href="https://www.facebook.com/"><i class='bx bxl-facebook'></i></a></li>
+                        <li><a href="https://www.twitter.com/"><i class='bx bxl-twitter'></i></a></li>
+                     </ul>
+                     <div class="social-plus"><i class='bx bx-plus'></i></div>
+                  </div>
+                  <svg viewBox="0 0 430 195" xmlns="http://www.w3.org/2000/svg">
+                     <path d="M160.378 64.0315C43.5811 57 15.7702 14.7334 3.40949e-05 0.000915527L4.53134e-05 195.001L430 195L430 157.164C378.284 73 297.179 72.2673 160.378 64.0315Z" />
+                  </svg>
+                  <div class="team-content">
+                     <h4 class="name">Devon Lane</h4>
+                     <p class="designation">Graphic Designer</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="blog-section3 pb-120">
+   <div class="container">
+      <div class="row justify-content-center">
+         <div class="col-lg-6 col-md-8 col-sm-10">
+            <div class="section-title3 primary4 text-cener">
+               <span>-Our Blog-</span>
+               <h3>Leatest News Feeds </h3>
+               <p>Get the most of reduction in your team’s operating costs for the whole product which creates amazing UI/UX experiences.</p>
+            </div>
+         </div>
+      </div>
+      <div class="row justify-content-center position-relative">
+         <img src="{{ static_asset('front-end/images/bg/portfolio-vctor.png')}}" alt="image" class="blog-vector img-fluid">
+         <div class="swiper blog-slider swiper-fix">
+            <div class="swiper-wrapper">
+               <div class="swiper-slide">
+                  <div class="single-blog-2 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay=".2s">
+                     <img src="{{ static_asset('front-end/images/bg/blog31.png')}}" class="blog-img" alt="image">
+                     <div class="content">
+                        <span>Ui/Ux Design</span>
+                        <h4><a href="blog-details.html">What Does a Product Manager Do? Your Complete Career Guide</a></h4>
+                        <p class="para">The product manager job titleis fast becom ing on of the hottest business.</p>
+                        <div class="meta">
+                           <i class="bi bi-stopwatch"></i><span>Februay 24, 2022</span>
+                        </div>
                      </div>
                   </div>
-                  <div class="client-ratting d-none d-md-block d-lg-block">
-                     <ul class="list-inline mb-0">
-                        <li class="list-inline-item mr-0"><span class="icon icon-xs font-small text-warning"><i class="fas fa-star ratting-color"></i></span></li>
-                        <li class="list-inline-item mr-0"><span class="icon icon-xs font-small text-warning"><i class="fas fa-star ratting-color"></i></span></li>
-                        <li class="list-inline-item mr-0"><span class="icon icon-xs font-small text-warning"><i class="fas fa-star ratting-color"></i></span></li>
-                        <li class="list-inline-item mr-0"><span class="icon icon-xs font-small text-warning"><i class="fas fa-star ratting-color"></i></span></li>
-                        <li class="list-inline-item mr-0"><span class="icon icon-xs font-small text-warning"><i class="fas fa-star ratting-color"></i></span></li>
-                     </ul>
-                     <span class="font-weight-bold small">5.0 <span class="font-weight-lighter">Out of 5</span></span>
-                  </div>
                </div>
-            </div>
-         </div>
-         <div class="col-12 col-lg-6 mb-4 mb-md-4 mb-lg-0">
-            <div class="testimonial-single shadow-sm bg-white rounded-custom p-5">
-               <div class="quotation mb-4">
-                  <span class="icon icon-md icon-lg icon-light"><i class="fas fa-quote-left"></i></span>
-               </div>
-               <blockquote class="blockquote">
-                  Intrinsicly facilitate functional imperatives without next-generation services. Compellingly revolutionize worldwide users enterprise best practices.
-               </blockquote>
-               <div class="d-flex justify-content-md-between justify-content-lg-between align-items-center pt-3">
-                  <div class="media align-items-center">
-                     <img src="{{ static_asset('front-end/img/team/team-1.jpg')}}" alt="team" class="avatar avatar-sm mr-3">
-                     <div class="media-body">
-                        <h6 class="mb-0">Pirtle Karol</h6>
-                        <small>Team Leader, ThemeTags</small>
+               <div class="swiper-slide">
+                  <div class="single-blog-2 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay=".4s">
+                     <img src="{{ static_asset('front-end/images/bg/blog32.png')}}" class="blog-img" alt="image">
+                     <div class="content">
+                        <span>Development</span>
+                        <h4><a href="blog-details.html">What Is a Marketing Associate? A Job Description & Career.</a></h4>
+                        <p class="para">The product manager job titleis fast becom ing on of the hottest business.</p>
+                        <div class="meta">
+                           <i class="bi bi-stopwatch"></i><span>Februay 24, 2022</span>
+                        </div>
                      </div>
                   </div>
-                  <div class="client-ratting d-none d-md-block d-lg-block">
-                     <ul class="list-inline mb-0">
-                        <li class="list-inline-item mr-0"><span class="icon icon-xs font-small text-warning"><i class="fas fa-star ratting-color"></i></span></li>
-                        <li class="list-inline-item mr-0"><span class="icon icon-xs font-small text-warning"><i class="fas fa-star ratting-color"></i></span></li>
-                        <li class="list-inline-item mr-0"><span class="icon icon-xs font-small text-warning"><i class="fas fa-star ratting-color"></i></span></li>
-                        <li class="list-inline-item mr-0"><span class="icon icon-xs font-small text-warning"><i class="fas fa-star ratting-color"></i></span></li>
-                        <li class="list-inline-item mr-0"><span class="icon icon-xs font-small text-warning"><i class="fas fa-star ratting-color"></i></span></li>
-                     </ul>
-                     <span class="font-weight-bold small">5.0 <span class="font-weight-lighter">Out of 5</span></span>
+               </div>
+               <div class="swiper-slide">
+                  <div class="single-blog-2 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay=".6s">
+                     <img src="{{ static_asset('front-end/images/bg/blog33.png')}}" class="blog-img" alt="image">
+                     <div class="content">
+                        <span>SEO</span>
+                        <h4><a href="blog-details.html">Which Webdesign Is On Trending With Color Palatte Glassy.</a></h4>
+                        <p class="para">The product manager job titleis fast becom ing on of the hottest business.</p>
+                        <div class="meta">
+                           <i class="bi bi-stopwatch"></i><span>Februay 24, 2022</span>
+                        </div>
+                     </div>
                   </div>
                </div>
             </div>
          </div>
+         <div class="slider-bottom mt-50 d-xl-flex d-none justify-content-center align-items-center">
+            <div class="swiper-pagination-blog text-center"></div>
+         </div>
       </div>
    </div>
-</section>
-<!--testimonial section end-->
-<!--cta section start-->
-<section class="section section-sm py-5 ">
+</div>
+<div class="testimonial-section2 pb-120">
    <div class="container">
-      <div class="row justify-content-around align-items-center">
-         <div class="col-md-7">
-            <div class="subscribe-content">
-               <h3>Consulting Agency for Your Business</h3>
-               <p class="mb-lg-0 mb-md-0">Rapidiously engage fully tested e-commerce with progressive architectures.</p>
-            </div>
-         </div>
-         <div class="col-md-4">
-            <div class="action-btn text-lg-right text-sm-left">
-               <a href="#" class="btn btn-primary">Contact With Us</a>
+      <div class="row justify-content-center">
+         <div class="col-lg-6 col-md-8 col-sm-10">
+            <div class="section-title3 primary4 text-cener">
+               <span>-Testimonial-</span>
+               <h3>See Our Clients Motivation</h3>
+               <p>Get the most of reduction in your team’s operating costs for the whole product which creates amazing UI/UX experiences.</p>
             </div>
          </div>
       </div>
+      <div class="row justify-content-center position-relative">
+         <div class="swiper testimonial-slider2 swiper-fix">
+            <div class="swiper-wrapper">
+               <div class="swiper-slide">
+                  <div class="testimonial-single2 style-2 hover-border3 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay=".2s">
+                     <div class="quote">
+                        <img alt="image" src="{{ static_asset('front-end/images/icons/quote-white.svg')}}" class="quote-icon">
+                     </div>
+                     <img src="{{ static_asset('front-end/images/bg/testi3-bg.svg')}}" alt="image" class="testi2-bg">
+                     <div class="author">
+                        <div class="author-img">
+                           <img src="{{ static_asset('front-end/images/bg/client21.png')}}" alt="image">
+                        </div>
+                        <div class="author-desig">
+                           <h5>Johan Martin Sr</h5>
+                           <p>Product Manager</p>
+                        </div>
+                     </div>
+                     <p class="para">You have been absolutely wonderful for Kinship Center, & I can't thank you enough for all your tremendous skills, support and patience specially during our merger. You will always be Kinship Center's vendor of choice!</p>
+                  </div>
+               </div>
+               <div class="swiper-slide">
+                  <div class="testimonial-single2 style-2 hover-border3 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay=".4s">
+                     <div class="quote">
+                        <img alt="image" src="{{ static_asset('front-end/images/icons/quote-white.svg')}}" class="quote-icon">
+                     </div>
+                     <img src="{{ static_asset('front-end/images/bg/testi3-bg.svg')}}" alt="image" class="testi2-bg">
+                     <div class="author">
+                        <div class="author-img">
+                           <img src="{{ static_asset('front-end/images/bg/client22.png')}}" alt="image">
+                        </div>
+                        <div class="author-desig">
+                           <h5>Andrew Jordan</h5>
+                           <p>Product Manager</p>
+                        </div>
+                     </div>
+                     <p class="para">You have been absolutely wonderful for Kinship Center, & I can't thank you enough for all your tremendous skills, support and patience specially during our merger. You will always be Kinship Center's vendor of choice!</p>
+                  </div>
+               </div>
+               <div class="swiper-slide">
+                  <div class="testimonial-single2 style-2 hover-border3 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay=".6s">
+                     <div class="quote">
+                        <img alt="image" src="{{ static_asset('front-end/images/icons/quote-white.svg')}}" class="quote-icon">
+                     </div>
+                     <img src="{{ static_asset('front-end/images/bg/testi3-bg.svg')}}" alt="image" class="testi2-bg">
+                     <div class="author">
+                        <div class="author-img">
+                           <img src="{{ static_asset('front-end/images/bg/client21.png')}}" alt="image">
+                        </div>
+                        <div class="author-desig">
+                           <h5>Michel Paolo</h5>
+                           <p>Product Manager</p>
+                        </div>
+                     </div>
+                     <p class="para">You have been absolutely wonderful for Kinship Center, & I can't thank you enough for all your tremendous skills, support and patience specially during our merger. You will always be Kinship Center's vendor of choice!</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="slider-bottom d-flex justify-content-center align-items-center">
+            <div class="swiper-pagination2 style-3 text-center"></div>
+         </div>
+      </div>
    </div>
-</section>
-<!--cta section end-->
+</div>
 @endsection
-
 @section('script')
-
 @endsection

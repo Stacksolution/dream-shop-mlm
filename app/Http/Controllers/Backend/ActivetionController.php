@@ -88,7 +88,6 @@ class ActivetionController extends Controller
                 //wallet or commition utility
                 CommissionUtility::referral_commission($user,$request->order_id);
                 CommissionUtility::pool_level_commission($user,$request->order_id);
-                CommissionUtility::signup_coins($user,$request->order_id);
             }
 
             \Session::flash('success','Profile updated successfully !');

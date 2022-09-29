@@ -1,6 +1,17 @@
 <?php
 
 use Carbon\Carbon;
+if (!function_exists('static_asset')) {
+    /**
+     * Generate an referral id 
+     *
+     * @param id $id
+     */
+    function referral($id)
+    {
+        return strtoupper("MDS".sprintf('%07d',$id));
+    }
+}
 
 if (!function_exists('static_asset')) {
     /**
@@ -54,7 +65,7 @@ if (!function_exists('image_path')) {
      * @return string url
      */
     function image_path($image_path = null){
-        $image = static_asset('back-end/images/users/avatar-1.jpg');
+        $image = static_asset('back-end/images/users/image.png');
         if($image_path != null && is_string($image_path)){
             if(File::exists(public_path('uploads/'.$image_path))){ 
                 $image = static_asset('uploads/'.$image_path);

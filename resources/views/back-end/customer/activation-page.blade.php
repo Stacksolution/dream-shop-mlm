@@ -43,7 +43,7 @@
                              </div>
                          </div>
                          <div class="py-4">
-                             <h2><sup><small>Rs</small></sup> 300/ <span class="font-size-13">Activate</span></h2>
+                             <h2><sup><small>Rs</small></sup> 2100/ <span class="font-size-13">Activate</span></h2>
                          </div>
                          <div class="text-center plan-btn">
                              <a href="{{route('plan.payment',[Auth()->user()->id,'pool'])}}" class="btn btn-primary btn-sm waves-effect waves-light">Pay now</a>

@@ -8,19 +8,9 @@ use App\Models\User;
 use App\Models\Customers;
 use App\Models\Wallets;
 use App\Models\PaymentLog;
-use App\Models\LevelMatrixCustomer;
 use Illuminate\Support\Str;
 use App\Utility\PoolsUtility;
 use App\Utility\CommissionUtility;
-use App\Models\Coins;
-use App\Models\Bonanzavalue;
-use App\Models\Pointvalue;
-use App\Models\Rewardsvalue;
-use App\Models\Order;
-use App\Models\Binary;
-use App\Models\BonanzaWallets;
-use App\Models\RewardsWallets;
-use App\Utility\BinaryUtility;
 
 class WalletsController extends Controller
 {
@@ -57,26 +47,10 @@ class WalletsController extends Controller
         $balance = Wallets::balance($request->wallet);
         $withdraw = Wallets::withdraw($request->wallet);
         $overall = Wallets::overall($request->wallet);
-        $coins = Coins::balance($request->wallet);
-
-        $point_left = Pointvalue::where('point_user_id',$request->wallet)->where('point_value_side',"L")->where('point_type','1')->sum('point_value');
-        $point_right = Pointvalue::where('point_user_id',$request->wallet)->where('point_value_side',"R")->where('point_type','1')->sum('point_value');
-        $rewards_left = Rewardsvalue::where('rewards_user_id',$request->wallet)->where('rewards_value_side','L')->where('rewards_type','1')->sum('rewards_value');
-        $rewards_right = Rewardsvalue::where('rewards_user_id',$request->wallet)->where('rewards_value_side','R')->where('rewards_type','1')->sum('rewards_value');
-        $bonanza_right = Bonanzavalue::where('bonanza_user_id',$request->wallet)->where('bonanza_value_side','R')->where('bonanza_type','1')->sum('bonanza_value');
-        $bonanza_left = Bonanzavalue::where('bonanza_user_id',$request->wallet)->where('bonanza_value_side','L')->where('bonanza_type','1')->sum('bonanza_value');
-
-        $point_balance   = Pointvalue::where('point_user_id',$request->wallet)->where('point_type','0')->sum('point_value');
-        $bonanza_balance = BonanzaWallets::balance($request->wallet);
-        $rewards_balance = RewardsWallets::balance($request->wallet);
 
         return view('back-end.wallets.wallets-page',
             compact(
-                'customer','balance','withdraw','overall','coins',
-                'point_left','point_right',
-                'rewards_left','rewards_right',
-                'bonanza_right','bonanza_left',
-                'point_balance','bonanza_balance','rewards_balance',
+                'customer','balance','withdraw','overall'
             )
         );
     }
@@ -118,10 +92,11 @@ class WalletsController extends Controller
             $payment->payment_type = '1';
             $payment->payment_uses = 'level_active_wallets';
 
-            if(Wallets::where('wallet_transaction_id',$orderId)->count() <= 0){
+            if(Wallets::where('wallet_transaction_id',$orderId)->count() > 0){
                 \Session::flash('success','Oops something went wrong !');
                 return redirect()->route('back.office');
             }
+            
 
             $payment->save();
             WalletsController::level_payment($request);
@@ -135,42 +110,6 @@ class WalletsController extends Controller
             $wallet->wallet_status = 1;
             $wallet->wallet_amount = 300;
             $wallet->save();
-        }else if($request->plan == 'binary'){
-            //$request->user_id  as order id 
-            $order = Order::where('order_transaction_id',$request->id)->with('orderItem')->first();
-            $orderId = $order->order_transaction_id;
-            $amount  = $order->order_total;
-
-            $payment = new PaymentLog();
-            $payment->payment_amount  = $order->order_total;
-            $payment->payment_user_id = $order->user_id;
-            $payment->payment_details = json_encode(['orderAmount'=>$payment->payment_amount,'orderId'=>$orderId,'paymentMode'=>'Wallets','txTime'=>date('Y-m-d H:i:s')]);
-            $payment->payment_status = '1';
-            $payment->payment_type = '1';
-            $payment->payment_uses = 'binary_active_wallets';
-
-            if(Wallets::where('wallet_transaction_id',$orderId)->where('wallet_uses','binary_active_wallets')->count() > 0){
-                \Session::flash('success','Oops something went wrong !');
-                return redirect()->route('back.office');
-            }
-            
-            $order->order_payment_status = 'paid';
-            $order->order_invoice_number = 'AA-'.sprintf('%08d',$order->id);
-            $order->save();
-
-            $payment->save();
-
-            $wallet = new Wallets();
-            $wallet->wallet_uses    = 'binary_active_wallets';
-            $wallet->wallet_type    = 0;// One means credit and Zero means Debit
-            $wallet->wallet_user_id = $order->user_id;
-            $wallet->wallet_transaction_id = $orderId;
-            $wallet->wallet_description = "By activating binary plan, Rs.".$amount." rupees debit off your wallet !";
-            $wallet->wallet_status = 1;
-            $wallet->wallet_amount = $amount;
-            $wallet->save();
-            //serving commition and matching values
-            WalletsController::binary_payment($request);
         }
 
         \Session::flash('success','Payment success !');
@@ -193,18 +132,6 @@ class WalletsController extends Controller
 
         CommissionUtility::level_income_commission($user);
         CommissionUtility::level_direct_commission($user);
-    }
-
-    /**
-     * This method use for active binary plan
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public static function binary_payment(Request $request){
-        //$request->user_id  as order id 
-        $order = Order::where('order_transaction_id',$request->id)->with('orderItem')->first();
-        Binary::where('binary_user_id',Auth()->user()->id)->update(array('binary_status'=>1));
-        BinaryUtility::binary_package_commission(Auth()->user(),$order);
     }
     /**
      * Show the application back office wallets by users id for admin end.

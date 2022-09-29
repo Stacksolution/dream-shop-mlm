@@ -41,7 +41,7 @@
    <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=62cedc8c987470001990b4cb&product=inline-share-buttons' async='async'></script>
    @yield('header')
 </head>
-<body data-sidebar="dark" data-layout-scrollable="true">
+<body data-sidebar="light" data-layout-scrollable="true">
    <div id="layout-wrapper">
       @include('back-end.include.header-file')
       @include('back-end.include.left-sidebar')

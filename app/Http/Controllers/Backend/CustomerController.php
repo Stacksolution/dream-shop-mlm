@@ -13,7 +13,6 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use App\Utility\PoolsUtility;
 use App\Models\Wallets;
-use App\Models\Coins;
 
 
 
@@ -158,17 +157,6 @@ class CustomerController extends Controller
         
     }
     /**
-     * Show the user wise tree by user referral code.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function treeView(Request $request)
-    {   
-        $customer = PoolMatrixCustomer::tree_users(User::findOrFail($request->id));
-        return view('back-end.customer.treeview',compact('customer'));
-    }
-
-    /**
      * Show the user profile by id 
      *
      * @return \Illuminate\Contracts\Support\Renderable
@@ -180,7 +168,6 @@ class CustomerController extends Controller
         $balance  = Wallets::balance($user_id);
         $withdraw = Wallets::withdraw($user_id);
         $overall  = Wallets::overall($user_id);
-        $coins    = Coins::balance($user_id);
-        return view('back-end.profile.index',compact('customer','balance','withdraw','overall','coins'));
+        return view('back-end.profile.index',compact('customer','balance','withdraw','overall'));
     }
 }

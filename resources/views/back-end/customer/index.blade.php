@@ -110,9 +110,6 @@
                                             @if (Auth()->user()->user_type == 'admin')
                                             <a class="dropdown-item" href="{{route('wallets.show',[$data->id])}}"><i class="bx bx-wallet text-dark me-1"></i> Wallets balance</a>
                                             <a class="dropdown-item" href="{{route('wallets.transactions',[$data->id])}}"><i class="bx bx-wallet text-dark me-1"></i> Wallets Transaction</a>
-                                            <a class="dropdown-item" href="{{route('bonanza.show',[$data->id])}}"><i class="bx bx-wallet text-dark me-1"></i> Bonanza Transaction</a>
-                                            <a class="dropdown-item" href="{{route('point.show',[$data->id])}}"><i class="bx bx-wallet text-dark me-1"></i> Points Transaction</a>
-                                            <a class="dropdown-item" href="{{route('rewards.show',[$data->id])}}"><i class="bx bx-wallet text-dark me-1"></i> Rewards Transaction</a>
                                             @if($data->user_id_status == "0")
                                             <a class="dropdown-item" href="{{route('subscriprion.manual',[$data->id])}}"><i class="bx bx-money text-primary me-1"></i>Pool Manual Payment</a>
                                             @endif
@@ -120,7 +117,7 @@
                                             @if($data->user_id_status == "0")
                                             <a class="dropdown-item" href="{{route('plan.payment',[$data->id,'pool'])}}" title="online payment"><i class="bx bxl-paypal text-primary me-1"></i>Pool Online Payment</a>
                                             @endif
-                                            <a class="dropdown-item" href="{{route('customer.treeview',[$data->id])}}"><i class="bx bx-street-view text-dark me-1"></i>Network</a>
+                                            <a class="dropdown-item" href="{{route('user.pool.community',[$data->id])}}"><i class="bx bx-street-view text-dark me-1"></i>Network</a>
                                             <a class="dropdown-item" title="Edit" href="{{route('customer.edit',[$data->id])}}"><i class="bx bx-edit text-success me-1"></i>Edit
                                             </a>
                                          </div>
