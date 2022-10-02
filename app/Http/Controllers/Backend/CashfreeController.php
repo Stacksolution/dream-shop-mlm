@@ -99,7 +99,6 @@ class CashfreeController extends Controller{
             if(Wallets::where('wallet_transaction_id',$request->orderId)->count() <= 0){
                 //wallet or commition utility
                 CommissionUtility::referral_commission($user,$request->orderId);
-                CommissionUtility::pool_level_commission($user,$request->orderId);
                 
                 $active = new ActivationWallet();
                 $active->active_amount  = $request->orderAmount;

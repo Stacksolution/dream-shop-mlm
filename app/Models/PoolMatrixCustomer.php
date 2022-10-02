@@ -37,4 +37,13 @@ class PoolMatrixCustomer extends Model
         }
         return $records;
     }
+
+    public function children(){
+        //$this->hasMany(self::clas, 'foreign_key', 'local_key');
+        return $this->hasMany(self::class, 'pmc_parent_id','id');
+    }
+
+    public function grandchildren(){
+        return $this->children()->with('grandchildren');
+    }
 }
