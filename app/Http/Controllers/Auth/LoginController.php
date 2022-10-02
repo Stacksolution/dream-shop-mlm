@@ -28,7 +28,13 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = 'login';
-
+    protected function credentials(Request $request){
+        if (filter_var($request->email,FILTER_VALIDATE_EMAIL)) {
+            return ['email' =>$request->email, 'password'=>$request->password];
+        } else {
+            return ['user_referral' =>$request->email, 'password'=>$request->password];
+        }
+    }
     /**
      * Check user's role and redirect user based on their role
      * @return

@@ -40,8 +40,8 @@
                   <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                    @csrf
                       <div class="mb-3">
-                         <label for="username" class="form-label">Username</label>
-                         <input type="email" id="email" type="email" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus placeholder="Enter email">
+                         <label for="username" class="form-label">Email Or {{env("APP_NAME")}} ID</label>
+                         <input type="text" id="email" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus placeholder="Email Or {{env('APP_NAME')}} ID">
                       </div>
                       <div class="mb-3">
                          <label class="form-label">Password</label>

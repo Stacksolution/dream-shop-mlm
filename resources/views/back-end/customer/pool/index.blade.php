@@ -26,7 +26,7 @@
                         <ul>
                            @foreach($customer as $key => $data_1)
                            <li>
-                              <a href="{{route('user.pool.community',[$data_1->user->id])}}">
+                              <a href="">
                                  <div class="d-flex" style="box-shadow: 5px 5px 10px #888888;border-radius: 5px; padding: 10px;">
                                     <div class="align-self-center me-3">
                                        <i class="mdi mdi-circle text-success font-size-10"></i>
@@ -44,7 +44,7 @@
                               <ul class="active">
                                  @foreach($data_1->children as $key => $data_2)
                                  <li>
-                                    <a href="{{route('user.pool.community',[$data_2->user->id])}}">
+                                    <a href="">
                                        <div class="d-flex" style="box-shadow: 5px 5px 10px #888888;border-radius: 5px; padding: 10px;">
                                           <div class="align-self-center me-3">
                                              <i class="mdi mdi-circle text-success font-size-10"></i>
@@ -53,8 +53,8 @@
                                               <img src="{{ image_path() }}" class="rounded-circle avatar-xs" alt="">
                                           </div>
                                           <div class="flex-grow-1 overflow-hidden">
-                                              <h5 class="text-truncate font-size-14 mb-1">{{$data_2->user->name}}</h5>
-                                              <p class="text-truncate mb-0">{{$data_2->user->user_referral}}</p>
+                                              <h5 class="text-truncate font-size-14 mb-1">{{@$data_2->user->name}}</h5>
+                                              <p class="text-truncate mb-0">{{@$data_2->user->user_referral}}</p>
                                           </div>
                                       </div>
                                     </a>
@@ -62,7 +62,7 @@
                                     <ul>
                                        @foreach($data_2->children as $key => $data_3)
                                        <li>
-                                          <a href="{{route('user.pool.community',[$data_3->user->id])}}">
+                                          <a href="">
                                              <div class="d-flex" style="box-shadow: 5px 5px 10px #888888;border-radius: 5px; padding: 10px;">
                                                 <div class="align-self-center me-3">
                                                    <i class="mdi mdi-circle text-success font-size-10"></i>
@@ -71,8 +71,8 @@
                                                     <img src="{{ image_path() }}" class="rounded-circle avatar-xs" alt="">
                                                 </div>
                                                 <div class="flex-grow-1 overflow-hidden">
-                                                    <h5 class="text-truncate font-size-14 mb-1">{{$data_3->user->name}}</h5>
-                                                    <p class="text-truncate mb-0">{{$data_3->user->user_referral}}</p>
+                                                    <h5 class="text-truncate font-size-14 mb-1">{{@$data_3->user->name}}</h5>
+                                                    <p class="text-truncate mb-0">{{@$data_3->user->user_referral}}</p>
                                                 </div>
                                             </div>
                                           </a>
