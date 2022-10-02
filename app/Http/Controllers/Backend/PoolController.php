@@ -36,7 +36,7 @@ class PoolController extends Controller
 
     }
     /**
-     * Show the user wise tree by user referral code.
+     * this method use for show details
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
