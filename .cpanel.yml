@@ -1,5 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/icquickp/mydreamshop.in/
+    - export DEPLOYPATH=/home/icquickp/mydreamshop.in
     - /bin/cp * $DEPLOYPATH
