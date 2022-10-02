@@ -56,19 +56,25 @@ class PoolsUtility {
             //if leve is done then auto leve shift 
             $levels = $level[$pool_users->pmc_level_value];
         }
+        
         //user tree complete and count user 
+        $poolcustomer = new PoolMatrixCustomer();
         if(!empty($pool_users)){
             $count_level_id = PoolMatrixCustomer::where('pmc_parent_id',$pool_users->pmc_parent_id)->count();
             if($count_level_id >= 3){
-                $parent = PoolMatrixCustomer::where('pmc_parent_id',$pool_users->pmc_parent_id)->orderBy('id','asc')->limit(1)->first();
-                $parent_user = PoolMatrixCustomer::find($parent->id);
-                $parent_id = $parent_user->pmc_user_id;
+                $parent = PoolMatrixCustomer::where('id','>',$pool_users->pmc_parent_id)->orderBy('id','asc')->limit(1)->first();
+                // $parent_user = PoolMatrixCustomer::find($parent->id);
+                // $parent_id = $parent_user->pmc_user_id;
+                $parent_id = $parent->id;
+                $poolcustomer->pmc_parent_user_id   = $parent->pmc_user_id;
             }else{
                 $parent_id = $pool_users->pmc_parent_id;
+                $parent = PoolMatrixCustomer::where('id',$pool_users->pmc_parent_id)->limit(1)->first();
+                $poolcustomer->pmc_parent_user_id   = $parent->pmc_user_id;
             }
         }
 
-        $poolcustomer = new PoolMatrixCustomer();
+        
         $poolcustomer->pmc_user_id     = $users->id;
         $poolcustomer->pmc_level_value = $levels['level_value'];
         $poolcustomer->pmc_level_name  = $levels['level_name'];
@@ -80,6 +86,7 @@ class PoolsUtility {
         }else{
            $poolcustomer->pmc_user_side = 'R';
         }
+        //dd($poolcustomer);
         $poolcustomer->save();
         
     }

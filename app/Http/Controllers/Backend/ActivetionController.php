@@ -87,7 +87,6 @@ class ActivetionController extends Controller
             if(Wallets::where('wallet_transaction_id',$request->order_id)->count() <= 0){
                 //wallet or commition utility
                 CommissionUtility::referral_commission($user,$request->order_id);
-                CommissionUtility::pool_level_commission($user,$request->order_id);
             }
 
             \Session::flash('success','Profile updated successfully !');
