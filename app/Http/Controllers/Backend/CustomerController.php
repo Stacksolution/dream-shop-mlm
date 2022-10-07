@@ -170,4 +170,10 @@ class CustomerController extends Controller
         $overall  = Wallets::overall($user_id);
         return view('back-end.profile.index',compact('customer','balance','withdraw','overall'));
     }
+
+    public function levels(Request $request){
+        $user_id = Auth()->user()->id; 
+        $levelcostomer = User::user_tree_level($user_id);
+        return view('back-end.customer.level.index',compact('levelcostomer'));
+    }
 }

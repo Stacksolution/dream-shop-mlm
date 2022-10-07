@@ -4,6 +4,8 @@ use App\Models\PoolMatrixCustomer;
 use App\Models\User;
 use Illuminate\Support\Str;
 use App\Models\Wallets;
+use App\Models\Poolstab;
+use App\Models\UserPoolslab;
 
 class PoolsUtility {
     /*
@@ -33,6 +35,8 @@ class PoolsUtility {
     |@auther K.K ADIL KHAN AZAD
     */
     public static function pool_matrix_customers_create($users) {
+        PoolsUtility::create_user_pool_slab($users);
+        //user pool slab create 
         $level = array('level_name' => 'LEVEL  01', 'level_value' => '1');
         for ($i = 1;$i <= 100;$i++) {
             array_push($level, array('level_name' => 'LEVEL  0' . $i, 'level_value' => $i));
@@ -86,7 +90,6 @@ class PoolsUtility {
         }else{
            $poolcustomer->pmc_user_side = 'R';
         }
-        //dd($poolcustomer);
         $poolcustomer->save();
         
     }
@@ -135,5 +138,21 @@ class PoolsUtility {
         $wallet->wallet_status = 1;
         $wallet->wallet_amount = $over_amoun;
         $wallet->save();
+    }
+    /*
+    |create_user_pool_slab
+    |This Methoad use for create pool slab by user wise 
+    |@auther K.K ADIL KHAN AZAD
+    */
+    public static function create_user_pool_slab($user){
+        $pool_slab = Poolstab::all();
+        foreach ($pool_slab as $key => $value) {
+            $user_poolstab = new UserPoolslab();
+            $user_poolstab->slab_name = $value->slab_name;
+            $user_poolstab->slab_user_target = $value->slab_user_target;
+            $user_poolstab->slab_amount = $value->slab_amount;
+            $user_poolstab->slab_user_id = $user->id;
+            $user_poolstab->save();
+        }
     }
 }

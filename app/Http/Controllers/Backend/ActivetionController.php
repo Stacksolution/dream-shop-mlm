@@ -11,6 +11,7 @@ use App\Models\ActivationWallet;
 use App\Models\PaymentLog;
 use App\Models\User;
 use App\Utility\CommissionUtility;
+use App\Utility\PoolsUtility;
 use App\Models\Wallets;
 
 class ActivetionController extends Controller
@@ -60,8 +61,8 @@ class ActivetionController extends Controller
     public function update(Request $request)
     {       
         $validated = $request->validate([
-            'transaction_id' => 'required|min:8',
-            'order_id' => 'required|min:8',
+            'transaction_id' => 'required|min:8|unique:wallets,wallet_transaction_id',
+            'order_id' => 'required|min:8|unique:activation_wallets,active_orderid',
             'amount' => 'required|numeric',
         ]);
         
@@ -83,10 +84,11 @@ class ActivetionController extends Controller
 
             $user->user_id_status = 1;
             $user->save();
-
+            //FOR ADD IN POOL A MEMBERS
+            PoolsUtility::pool_matrix_customers_create($user);
+            
             if(Wallets::where('wallet_transaction_id',$request->order_id)->count() <= 0){
-                //wallet or commition utility
-                CommissionUtility::referral_commission($user,$request->order_id);
+                CommissionUtility::direct_level_income($user,$request->order_id);
             }
 
             \Session::flash('success','Profile updated successfully !');

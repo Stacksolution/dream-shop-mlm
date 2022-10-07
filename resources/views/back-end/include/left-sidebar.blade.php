@@ -16,6 +16,8 @@
                </a>
                <ul class="sub-menu" aria-expanded="false">
                   <li><a href="{{route('customer.index')}}" key="t-member">Pool Community</a></li> 
+                  <li><a href="{{route('user.pool.slabs')}}" key="t-member">Auto Pool</a></li> 
+                  <li><a href="{{route('user.levels')}}" key="t-member">Level Members</a></li> 
                </ul>
             </li>
             <li>
@@ -76,6 +78,7 @@
                </a>
                <ul class="sub-menu" aria-expanded="false">
                   <li><a href="{{route('setting.index')}}" key="support">Website Setting</a></li>
+                  <li><a href="{{route('pool.index')}}" key="support">Pool Slab</a></li>
                </ul>
             </li>
             <li>

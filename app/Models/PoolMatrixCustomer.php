@@ -24,12 +24,12 @@ class PoolMatrixCustomer extends Model
         $records = PoolMatrixCustomer::where('pmc_user_id',$user->id)->with('user')->get();
         foreach($records as $key => $data_1){
             if ($data_1 != null):
-            $records[$key]->children = PoolMatrixCustomer::where('pmc_parent_id', $data_1->id)->get();
+            $records[$key]->children = PoolMatrixCustomer::where('pmc_parent_user_id', $data_1->id)->get();
             foreach($records[$key]->children as $key_2 => $data_2){
                 if ($data_2 != null):
-                $records[$key]->children[$key_2]->children = PoolMatrixCustomer::where('pmc_parent_id', $data_2->id)->get();
+                $records[$key]->children[$key_2]->children = PoolMatrixCustomer::where('pmc_parent_user_id', $data_2->id)->get();
                 foreach($records[$key]->children[$key_2]->children as $key_3 => $data_3){
-                    $records[$key]->children[$key_2]->children[$key_3]->children = PoolMatrixCustomer::where('pmc_parent_id', $data_3->id)->get();
+                    $records[$key]->children[$key_2]->children[$key_3]->children = PoolMatrixCustomer::where('pmc_parent_user_id', $data_3->id)->get();
                 }
                 endif;
             }

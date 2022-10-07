@@ -33,7 +33,7 @@ class DashboardController extends Controller
      */
     public function index()
     {    
-    
+        
         if(Auth()->user()->user_type == 'customer'){
             return redirect()->route('client.dashboard');
         }
@@ -64,20 +64,11 @@ class DashboardController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function clintdashboard(Request $request)
-    {       
-        $level = LevelMatrixCustomer::where('level_user_id',Auth()->user()->id)->count() > 0 ? 1 : 0 ; 
-        $activation = array(
-            'level_1'=>Auth()->user()->user_id_status,
-            'level_2'=>$level,
-            'level_3'=>0,
-            'level_4'=>0,
-            'level_5'=>0
-        );
-
-        CommissionUtility::login_commission(Auth()->User());
+    {    
+        
         $countmember = User::where('user_referral_by',Auth()->User()->user_referral)->count();
         $wallets = Wallets::balance(Auth()->User()->id);
-        return view('back-end.customer.dashboard',compact('countmember','wallets','activation'));
+        return view('back-end.customer.dashboard',compact('countmember','wallets'));
     }
 
     /**

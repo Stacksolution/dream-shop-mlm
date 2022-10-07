@@ -31,11 +31,13 @@ Route::get('/clear-cache', [DashboardController::class, 'clearCache'])->name('cl
 Route::group(['prefix' => 'back-office', 'middleware' => ['auth']], function () {
     Route::get('welcome', [DashboardController::class, 'welcome'])->name('welcome');
     Route::get('profile', [CustomerController::class, 'profile'])->name('profile');
+    Route::get('users/level', [CustomerController::class, 'levels'])->name('user.levels');
     Route::get('dashboard', [DashboardController::class, 'clintdashboard'])->name('client.dashboard')->middleware('activation');
     //member
     Route::resource('customer', CustomerController::class);
     Route::get('pool/community/{id}', [PoolController::class, 'treeView'])->name('user.pool.community');
-    
+    Route::get('pool/slabs', [PoolController::class, 'slabs'])->name('user.pool.slabs');
+    Route::resource('pool', PoolController::class);
     //wallets
     Route::resource('wallets', WalletsController::class);
     Route::group(['prefix' => 'wallets'], function () {
